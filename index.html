@@ -134,6 +134,41 @@
                                     <a href="#" class="theme-btn btn-style-one">下载简历</a>
                                     <a href="#" class="theme-btn btn-style-two">关于</a>
                                 </div>
+
+
+                             
+                                <audio id="audioPlayer" controls>
+                                    <source src="sound/favorite_song.wav" type="audio/wav">
+                                    您的浏览器不支持音频元素。
+                                </audio>
+
+                                <div id="progressBarContainer" style="width: 100%; background-color: #ddd; height: 10px;">
+                                    <div id="progressBar" style="width: 0%; height: 100%; background-color: #4CAF50;">
+                                    </div>
+                                </div>
+
+                              <script>
+                                  document.addEventListener('DOMContentLoaded', function() {
+                                    var audioPlayer = document.getElementById('audioPlayer');
+                                    var progressBar = document.getElementById('progressBar');
+                                    var progressBarContainer = document.getElementById('progressBarContainer');
+                              
+                                    audioPlayer.addEventListener('timeupdate', function() {
+                                      var progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+                                      progressBar.style.width = progress + '%';
+                                    });
+                              
+                                    progressBarContainer.addEventListener('click', function(e) {
+                                      var offsetX = e.offsetX;
+                                      var containerWidth = progressBarContainer.clientWidth;
+                                      var clickPercentage = offsetX / containerWidth;
+                                      audioPlayer.currentTime = clickPercentage * audioPlayer.duration;
+                                    });
+                                  });
+                              </script>
+
+
+                             
                                 <ul class="social-icon-two">
                                     <li><a href="https://space.bilibili.com/492152575?spm_id_from=333.1007.0.0"><span class="fa fa-facebook"></span></a></li>
                                     <li><a href="https://v.douyin.com/ihUbsKt8/"><span class="fa fa-twitter"></span></a></li>
