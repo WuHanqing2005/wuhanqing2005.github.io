@@ -130,24 +130,46 @@
                                 </div>
                                 <div class="text">我是一个来自上海师范大学的学生，欢迎来自世界各地的伙伴与我结识！</div>
                                 <div class="text">下方五个按钮分别为我的 Bilibili / 抖音 / 小红书 / Youtube / Instagram.</div>
-
-                                <div class="link-btn">
-                                    <a href="https://space.bilibili.com/492152575?spm_id_from=333.1007.0.0" class="theme-btn btn-style-one">下载简历</a>
-                                    <a href="https://space.bilibili.com/492152575?spm_id_from=333.1007.0.0" class="theme-btn btn-style-two">关于</a>
-                                </div>
                              
-                                <div class="audio-social-container">
-                                <div class="social-icons">
-                                    <a href="https://space.bilibili.com/492152575?spm_id_from=333.1007.0.0"><span class="fa fa-facebook"></span></a>
-                                    <a href="https://v.douyin.com/ihUbsKt8/"><span class="fa fa-twitter"></span></a>
-                                    <a href="https://www.xiaohongshu.com/user/profile/6423e3da000000001001dd20?xhsshare=CopyLink&appuid=6423e3da000000001001dd20&apptime=1725123204&share_id=d1de6fe532564ec4b1e92ef9609711e1"><span class="fa fa-book"></span></a>
-                                    <a href="https://youtube.com/@wuhanqing?si=o_ja6vr2OHmJrVK7"><span class="fa fa-youtube"></span></a>
-                                    <a href="https://www.instagram.com/wuhanqing2005?igsh=MTNkMWZiaDliY3g3Ng=="><span class="fa fa-instagram"></span></a>
-                                </div>
                                 <audio id="audioPlayer" controls>
                                     <source src="sound/favorite_song.wav" type="audio/wav">
                                     您的浏览器不支持音频元素。
                                 </audio>
+
+                                <div id="progressBarContainer" style="width: 100%; background-color: #ddd; height: 10px;">
+                                    <div id="progressBar" style="width: 0%; height: 100%; background-color: #4CAF50;">
+                                    </div>
+                                </div>
+
+                              <script>
+                                  document.addEventListener('DOMContentLoaded', function() {
+                                    var audioPlayer = document.getElementById('audioPlayer');
+                                    var progressBar = document.getElementById('progressBar');
+                                    var progressBarContainer = document.getElementById('progressBarContainer');
+                              
+                                    audioPlayer.addEventListener('timeupdate', function() {
+                                      var progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+                                      progressBar.style.width = progress + '%';
+                                    });
+                              
+                                    progressBarContainer.addEventListener('click', function(e) {
+                                      var offsetX = e.offsetX;
+                                      var containerWidth = progressBarContainer.clientWidth;
+                                      var clickPercentage = offsetX / containerWidth;
+                                      audioPlayer.currentTime = clickPercentage * audioPlayer.duration;
+                                    });
+                                  });
+                              </script>
+
+
+                             
+                                <ul class="social-icon-two">
+                                    <li><a href="https://space.bilibili.com/492152575?spm_id_from=333.1007.0.0"><span class="fa fa-facebook"></span></a></li>
+                                    <li><a href="https://v.douyin.com/ihUbsKt8/"><span class="fa fa-twitter"></span></a></li>
+                                    <li><a href="https://www.xiaohongshu.com/user/profile/6423e3da000000001001dd20?xhsshare=CopyLink&appuid=6423e3da000000001001dd20&apptime=1725123204&share_id=d1de6fe532564ec4b1e92ef9609711e1"><span class="fa fa-book"></span></a></li>
+                                    <li><a href="https://youtube.com/@wuhanqing?si=o_ja6vr2OHmJrVK7"><span class="fa fa-youtube"></span></a></li>
+                                    <li><a href="https://www.instagram.com/wuhanqing2005?igsh=MTNkMWZiaDliY3g3Ng=="><span class="fa fa-instagram"></span></a></li>
+                                </ul>
                             </div>
                             
                         </div>
