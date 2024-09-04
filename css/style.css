@@ -1936,3 +1936,10 @@ img{
     opacity: 1 !important;
     transform: translateX(10px);
 }
+
+
+/*======== Font Settings =========*/
+
+.centered-text {
+    text-align: center;
+}
