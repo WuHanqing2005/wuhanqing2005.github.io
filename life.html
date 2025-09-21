@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WuHanqing's Website</title>
+  <link rel="stylesheet" href="./css/base.css">
+  <script src="./js/jq.js"></script>
+  <link rel="stylesheet" href="./css/live.css">
+</head>
+
+<body>
+  <canvas class="canvas-wrap" id="triangle-lost-in-space" resize="true"></canvas>
+
+  <!-- loadding -->
+  <div class="lodding-wrap">
+    <div class="loadding-div"></div>
+  </div>
+
+  <div class="box">
+    <!-- 顶部栏 -->
+    <div class="header borderafter">
+      <!-- 返回按钮 -->
+      <a style="position: absolute;left:50px;" href="javascript:history.back()">
+        <svg t="1649246285004" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg "
+          p-id="3737" width="20" height="20">
+          <path
+            d="M98 468.9l322.8-322.8v184.4C743.6 376.7 881.9 607.3 928 837.8 812.7 676.4 651.3 602.6 420.8 602.6v189.1L98 468.9z"
+            p-id="3738" fill="#254665"></path>
+        </svg>
+      </a>
+
+      <div class="col">
+        <span data-lang="cn">个人网站</span>
+        <span data-lang="en" style="display:none">Personal Website</span>
+        <span data-lang="kr" style="display:none">개인 웹사이트</span>
+        <span data-lang="jp" style="display:none">個人サイト</span>
+        <span data-lang="de" style="display:none">Meine Website</span>
+        <!-- 右边操作栏 -->
+        <div class="header-right">
+          <!-- 按钮 -->
+          <div class="min_menu-wrap" id="minmenu">
+            <span class="min_menu"></span>
+          </div>
+          <!-- 列表 -->
+          <div class="menu_list">
+            <!-- 栏目 -->
+            <ul class="header-nav">
+              <li><a href="./index.html">
+                <span data-lang="cn">主页</span>
+                <span data-lang="en" style="display:none">Home</span>
+                <span data-lang="kr" style="display:none">홈페이지</span>
+                <span data-lang="jp" style="display:none">ホーム</span>
+                <span data-lang="de" style="display:none">Homepage</span>
+              </a></li>
+              <li><a href="./project.html">
+                <span data-lang="cn">项目</span>
+                <span data-lang="en" style="display:none">Project</span>
+                <span data-lang="kr" style="display:none">프로젝트</span>
+                <span data-lang="jp" style="display:none">プロジェクト</span>
+                <span data-lang="de" style="display:none">Projekt</span>
+              </a></li>
+              <li><a href="./resume.html">
+                <span data-lang="cn">简历</span>
+                <span data-lang="en" style="display:none">Resume</span>
+                <span data-lang="kr" style="display:none">이력</span>
+                <span data-lang="jp" style="display:none">履歴</span>
+                <span data-lang="de" style="display:none">Lebenslauf</span>
+              </a></li>
+              <li><a href="./contact.html">
+                <span data-lang="cn">联系</span>
+                <span data-lang="en" style="display:none">Contact</span>
+                <span data-lang="kr" style="display:none">연락</span>
+                <span data-lang="jp" style="display:none">連絡</span>
+                <span data-lang="de" style="display:none">Kontakt</span>
+              </a></li>
+              <li><a href="./blog.html">
+                <span data-lang="cn">博客</span>
+                <span data-lang="en" style="display:none">Blog</span>
+                <span data-lang="kr" style="display:none">블로그</span>
+                <span data-lang="jp" style="display:none">ブログ</span>
+                <span data-lang="de" style="display:none">Blog</span>
+              </a></li>
+              <li class="active"><a href="./life.html">
+                <span data-lang="cn">生活</span>
+                <span data-lang="en" style="display:none">Life</span>
+                <span data-lang="kr" style="display:none">라이프</span>
+                <span data-lang="jp" style="display:none">ライフ</span>
+                <span data-lang="de" style="display:none">Leben</span>
+              </a></li>
+              <li><a href="./download.html">
+                <span data-lang="cn">资源</span>
+                <span data-lang="en" style="display:none">Resource</span>
+                <span data-lang="kr" style="display:none">리소스</span>
+                <span data-lang="jp" style="display:none">リソース</span>
+                <span data-lang="de" style="display:none">Ressourcen</span>
+              </a></li>
+
+              <!-- 语言选择 -->
+              <li class="language-selector">
+                <select id="language-select">
+                  <option value="cn">中文</option>
+                  <option value="en">English</option>
+                  <option value="kr">한국어</option>
+                  <option value="jp">日本語</option>
+                  <option value="de">Deutsch</option>
+                </select>
+              </li>
+            </ul>
+            <!-- 开关灯 -->
+            <span class="kaig-bottm">
+              <svg t="1649159647627" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg " p-id="2250" width="15" height="15">
+                <path
+                  d="M1008.535135 710.670332l-70.446388 116.386904a112.099975 112.099975 0 0 1-140.572857 43.829042l-69.422645-17.083729c-5.502624 3.1992-11.133217 6.3984-16.763809 9.341665l-18.299425 62.896276C687.335435 981.514621 639.4754 1023.744064 582.657604 1023.744064H441.764828c-56.817796 0-104.677831-42.293427-110.308423-97.703574l-18.299425-62.896276a422.166458 422.166458 0 0 1-16.827793-9.341665l-69.614597 17.083729a112.163959 112.163959 0 0 1-140.508873-43.893026L15.631361 710.542364a107.493127 107.493127 0 0 1 32.43989-144.731817L96.251206 518.910272a410.649338 410.649338 0 0 1 0-14.204448l-48.179955-46.836291a107.365159 107.365159 0 0 1-32.375906-144.731817l70.190452-116.450888a112.099975 112.099975 0 0 1 140.572857-43.893026l69.550612 17.083729c5.566608-3.1992 11.133217-6.3984 16.827794-9.341665l18.299425-62.896276C336.831061 42.229443 384.691096 0 441.508892 0H582.529636c56.817796 0 104.677831 42.293427 110.372407 97.63959l18.235441 62.704324c5.75856 3.007248 11.325169 6.142464 16.827793 9.341665l69.678581-17.083729a112.163959 112.163959 0 0 1 140.508873 43.893026l70.446388 116.514872a107.493127 107.493127 0 0 1-32.375906 144.731817l-48.179955 46.772307a414.616346 414.616346 0 0 1 0 14.204448l48.243939 46.836291c47.092227 31.928018 62.192452 94.952262 32.247938 145.115721z m-213.066733-142.23644l3.391152-31.032242a246.210447 246.210447 0 0 0 0-51.699076l-3.263184-30.904274 93.992502-91.305173-53.554612-88.553862-131.615096 32.311922-23.546113-16.059985a294.134466 294.134466 0 0 0-48.627844-26.809297l-27.513121-11.901025L568.453156 127.968008H455.649356L419.370426 252.736816l-27.705074 11.965009c-16.635841 7.166208-32.951762 16.187953-48.499875 26.745313l-23.610097 15.996001-131.487128-32.247938-53.36266 88.489878 94.056486 91.433141-3.263184 30.968258a247.874031 247.874031 0 0 0 0 51.699076l3.1992 30.904274-93.928518 91.369157 53.554612 88.489878 131.551112-32.311922 23.610097 16.059985c15.292177 10.429393 31.544114 19.451137 48.563859 26.809297l27.577106 11.965009L455.905292 895.776056h112.611848l36.342914-124.768808 27.64109-11.965009c16.699825-7.166208 32.951762-16.187953 48.563859-26.745313l23.546113-15.996001 131.423144 32.247938 53.68258-88.745814-94.184454-91.369157zM512.147232 615.846038c57.329668 0 103.846038-46.516371 103.974006-103.974006 0-57.329668-46.644339-103.974006-103.974006-103.974007S408.173225 454.542364 408.173225 511.872032 454.817564 615.846038 512.147232 615.846038z m0 127.968008c-127.968008 0-231.942014-103.910022-231.942015-231.942014 0-127.968008 103.910022-231.942014 231.942015-231.942015 127.968008 0 231.942014 103.910022 231.942014 232.133967A232.133967 232.133967 0 0 1 512.147232 743.814046z"
+                  p-id="2251"></path>
+              </svg>
+              <!-- 开关按钮 -->
+              <span class="my-radio active" id="myRadio">
+                <i></i>
+              </span>
+              <svg t="1649159678284" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg " p-id="3376" width="15" height="15">
+                <path
+                  d="M505.4 878.6c-196.7 0-358-150.9-374.9-343.1 1-18.6 16.1-33.4 34.9-33.4 10.8 0 20.5 4.8 26.9 12.4 0.2 0.3 0.5 0.1 0.5-0.7 41.6 44.2 100.5 71.9 166.1 71.9 127.1 0 230.1-103 230.1-230.1 0-66.1-28-125.1-72.6-166.8 0.1-0.1 0.5-0.1 0.3-0.3-7-6.5-11.4-15.7-11.4-26.1 0-19 14.9-34.1 33.7-35.3 192.1 17.1 342.9 178.3 342.9 375 0 208-168.5 376.5-376.5 376.5z"
+                  p-id="3377"></path>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 顶部导航 -->
+    <div class="navigation">
+      <div class="nav-titleBox co zz">
+        <!-- 标题 -->
+        <div class="co-right">
+          <span class="titleBox-tag">Photo!</span>
+          <h1>
+            Life is like a box of chocolates.
+          </h1>
+          <a class="buttom navbtn" href="#next-one">生活就像巧克力
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 主要修改部分 -->
+    <div class="content zz">
+      <!-- 主要内容部分 -->
+      <div id="next-one">
+        <div class="content-li li1">
+          <div class="li1-box borderbefore">
+            <span>Sports</span><span class="tag">5</span>
+            <div class="borderbotm"></div>
+            <h2>运动</h2>
+          </div>
+          <div class="li1-box borderbefore">
+            <span>Foot</span><span class="tag">5</span>
+            <div class="borderbotm"></div>
+            <h2>美食</h2>
+          </div>
+          <div class="li1-box borderbefore">
+            <span>Travel</span><span class="tag">5</span>
+            <div class="borderbotm"></div>
+            <h2>旅行</h2>
+          </div>
+        </div>
+        <div class="content-li li2">
+          <h3>
+            <span>生活精彩瞬间</span>
+            <div class="borderbotm"></div>
+            <span>01</span>
+          </h3>
+
+          <div class="li2-box">
+            <!-- Pic.1 -->
+            <a class="li2-box-item carbox">
+              <img src="./img/live/1.jpg" alt="">
+              <div class="boxitem-title">
+                <h6>上海师范大学奉贤校区东门</h6>
+                <span>2024年3月28日</span>
+              </div>
+            </a>
+            <!-- Pic.2 -->
+            <a class="li2-box-item carbox">
+              <img src="./img/live/2.jpg" alt="">
+              <div class="boxitem-title">
+                <h6>上海师范大学奉贤校区东门</h6>
+                <span>2024年9月18日</span>
+              </div>
+            </a>
+            <!-- Pic.3 -->
+            <a class="li2-box-item carbox">
+              <img src="./img/live/3.jpg" alt="">
+              <div class="boxitem-title">
+                <h6>桃仙机场网红墙</h6>
+                <span>2025年6月18日</span>
+              </div>
+            </a>
+            <!-- Pic.4 -->
+            <a class="li2-box-item carbox" href="https://gitee.com/wttAndroid/xyy_server">
+              <img src="./img/live/4.jpg" alt="">
+              <div class="boxitem-title">
+                <h6>浦东国际机场</h6>
+                <span>2024年7月30日</span>
+              </div>
+            </a>
+            <!-- Pic.5 -->
+            <a class="li2-box-item carbox" href="https://gitee.com/wttAndroid/xyy_server">
+              <img src="./img/live/5.jpg" alt="">
+              <div class="boxitem-title">
+                <h6>上海Taxiway模拟飞行体验中心</h6>
+                <span>2023年1月28日</span>
+              </div>
+            </a>
+            <!-- Pic.6 -->
+            <a class="li2-box-item carbox" href="https://gitee.com/wttAndroid/xyy_server">
+              <img src="./img/live/6.jpg" alt="">
+              <div class="boxitem-title">
+                <h6>上海Taxiway模拟飞行体验中心</h6>
+                <span>2023年1月28日</span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="borderbotm"></div>
+        <div class="carbox copybottm">
+          ©WUHANQING2005
+        </div>
+      </div>
+    </div>
+</body>
+<script src="./js/base.js"></script>
+<script type="text/javascript" src="./js/paper-full.min.js"></script>
+<script type="text/javascript" src="./js/canvas.js"></script>
+
+</html>
