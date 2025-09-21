@@ -894,6 +894,20 @@ img {
 }
 
 
+/* 视频播放器 视频简历 */
+#playbuttom {
+  position: relative;  /* 取消绝对定位的限制 */
+  width: 100%;         /* 填充父容器 */
+  height: 500px;       /* 你可以根据需要调整高度 */
+  background: none;    /* 去掉原来的按钮背景 */
+}
+
+#playbuttom iframe {
+  width: 100%;
+  height: 100%;
+  display: block;      /* 消除默认 inline-block 间距 */
+}
+
 
 /* 确保所有卡片都有适当间距 */
 .li1-box, .li2-box, .li3-box, .li4-box, .li5-box, .li6-box, .li7-box {
