@@ -528,6 +528,7 @@ img {
 
 
 /* 加载小蝴蝶 */
+/*
 .lodding-wrap{
   position: fixed;
   left: 0px;
@@ -537,7 +538,7 @@ img {
   background-color: rgba(0, 0, 0, 0.95);
   z-index: 9;
   opacity: 1;
-}
+}*/
 
 .loadding-div{
   left: 50%;
