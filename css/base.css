@@ -237,7 +237,7 @@ img {
 /* 导航 */ 
 /* 黑色主题背景 */
 .navigation.active{ 
-  background-image: url("../img/back/black_background_minfuck.jpg"); /* 小图占位 */
+  background-image: url("../img/back/black_background_min.jpg"); /* 小图占位 */
   /* background-image: url("../img/back/aitx6-0og08.webp") !important; */
   
 }
@@ -248,7 +248,7 @@ img {
   background-color: transparent;
   height: 600px;
   border-radius: 20px;
-  background-image: url("../img/back/white_background_minfuck.jpg"); /* 小图占位 */
+  background-image: url("../img/back/white_background_min.jpg"); /* 小图占位 */
   /* background-image: url("../img/back/a58cbbffd2aa49c1b1e99990be912f30.jpg"); */
   background-attachment: fixed;
   background-size: 100%;
