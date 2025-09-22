@@ -237,7 +237,8 @@ img {
 /* 导航 */ 
 /* 黑色主题背景 */
 .navigation.active{ 
-  background-image: url("../img/back/aitx6-0og08.webp") !important;
+  background-image: url("../img/back/compressed_black_background.jpg") !important;
+  /* background-image: url("../img/back/aitx6-0og08.webp") !important; */
   
 }
 /* 默认主题 */
@@ -247,7 +248,8 @@ img {
   background-color: transparent;
   height: 600px;
   border-radius: 20px;
-  background-image: url("../img/back/a58cbbffd2aa49c1b1e99990be912f30.jpg");
+  background-image: url("../img/back/compressed_white_background.jpg");
+  /* background-image: url("../img/back/a58cbbffd2aa49c1b1e99990be912f30.jpg"); */
   background-attachment: fixed;
   background-size: 100%;
   background-repeat: no-repeat;
