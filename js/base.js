@@ -179,3 +179,25 @@ $('#minmenu').click(function () {
   // 初始化语言
   initLanguage();
 })();
+
+window.addEventListener("load", () => {
+  // 黑色主题
+  const blackNav = document.querySelector(".navigation.active");
+  if (blackNav) {
+    const imgBlack = new Image();
+    imgBlack.src = "../img/back/black_background_progressive.jpg"; // 高清图
+    imgBlack.onload = () => {
+      blackNav.style.backgroundImage = `url('${imgBlack.src}')`;
+    };
+  }
+
+  // 白色主题
+  const whiteNav = document.querySelector(".navigation:not(.active)");
+  if (whiteNav) {
+    const imgWhite = new Image();
+    imgWhite.src = "../img/back/white_background_progressive.jpg"; // 高清图
+    imgWhite.onload = () => {
+      whiteNav.style.backgroundImage = `url('${imgWhite.src}')`;
+    };
+  }
+});
