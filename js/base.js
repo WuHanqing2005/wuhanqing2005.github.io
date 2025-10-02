@@ -201,3 +201,35 @@ window.addEventListener("load", () => {
     };
   }
 });
+
+// 微信号复制函数
+document.addEventListener('DOMContentLoaded', function() {
+  var wechatBtn = document.getElementById('wechat-copy');
+  if (wechatBtn) {
+    wechatBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      var wechatId = 'Daniel_Qinghan';
+      navigator.clipboard.writeText(wechatId).then(function() {
+        alert('微信号已复制到剪贴板！');
+      }, function() {
+        alert('复制失败，请手动复制微信号：' + wechatId);
+      });
+    });
+  }
+});
+
+// QQ号复制函数
+document.addEventListener('DOMContentLoaded', function() {
+  var wechatBtn = document.getElementById('qq-copy');
+  if (wechatBtn) {
+    wechatBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      var wechatId = '3301208605';
+      navigator.clipboard.writeText(wechatId).then(function() {
+        alert('QQ号已复制到剪贴板！');
+      }, function() {
+        alert('复制失败，请手动复制微信号：' + wechatId);
+      });
+    });
+  }
+});
