@@ -106,9 +106,16 @@ Triangle.prototype.rotate = function () {
 // ---------------------------------------------------
 window.onmousemove = function (event) {
   if (!event) return;
-  mousePos.x = event.x;
-  mousePos.y = event.y;
-  triangle.rotate();
+  // 1. 确保 mousePos 存在
+  if (!window.mousePos) {
+    window.mousePos = { x: 0, y: 0 };
+  }
+  // 2. 再赋值
+  mousePos.x = event.clientX;   // 用 clientX 兼容性最好
+  mousePos.y = event.clientY;
+
+  // 3. 如果 triangle 也可能没初始化，同样判空
+  window.triangle && triangle.rotate();
 };
 
 var buildStars = function () {

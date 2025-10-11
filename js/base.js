@@ -127,8 +127,7 @@ $('#minmenu').click(function () {
         console.log(opacity)
         if (opacity <= 0) {
           $('.lodding-wrap').css('display','none');
-          timer && clearInterval(timer);   // 只有 timer 存在时才清
-          timer = null;                    // 清完立即置空，防止重复清
+          clearInterval(timer)
         }
       }, 100);
      
