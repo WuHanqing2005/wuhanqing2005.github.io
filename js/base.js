@@ -52,40 +52,53 @@
 
 
   $('#myRadio').click(function () {
-    // h1
-    let root = document.querySelector(':root')
+  // 1. 获取根元素
+  let root = document.querySelector(':root');
 
-    if ($('#myRadio').hasClass('active')) { //现在黑色变成白色
-      sessionStorage.setItem('wttandroid', true)
-      
-      $('#myRadio').removeClass('active')
-      $('.navigation').removeClass('active')
+  if ($('#myRadio').hasClass('active')) {
+    /* ===== 黑夜 → 白天 ===== */
+    sessionStorage.setItem('wttandroid', true);
 
-      root.style.setProperty('--backColor', '#fff')
-      root.style.setProperty('--borderline', '#fff')
-      root.style.setProperty('--headerCOlor', '#fff')
-      root.style.setProperty('--headerhover', 'rgb(255, 255, 255,.8)')
-      root.style.setProperty('--headerFont', '#00283A' )
-      root.style.setProperty('--fontColor', '#fff' )
-      root.style.setProperty('--mainColor', '#ff8181' )
-      root.style.setProperty('--bagColor', '#f4f5f7')
+    $('#myRadio').removeClass('active');
+    $('.navigation').removeClass('active');
 
-    } else {//现在白色变成黑色
-      sessionStorage.setItem('wttandroid', false)
-      
-      $('#myRadio').addClass('active')
-      $('.navigation').addClass('active')
-      
-      root.style.setProperty('--backColor', '#fff')
-      root.style.setProperty('--borderline', '#00283A')
-      root.style.setProperty('--headerCOlor', '#00283A')
-      root.style.setProperty('--headerhover', 'rgb(0, 40, 58,.8)')
-      root.style.setProperty('--headerFont', '#fff' )
-      root.style.setProperty('--fontColor', '#00283A' )
-      root.style.setProperty('--mainColor', '#ff8181' )
-      root.style.setProperty('--bagColor','#02162b' )
-    }
-})
+    /* 颜色变量 */
+    root.style.setProperty('--backColor', '#fff');
+    root.style.setProperty('--borderline', '#fff');
+    root.style.setProperty('--headerCOlor', '#fff');
+    root.style.setProperty('--headerhover', 'rgb(255, 255, 255,.8)');
+    root.style.setProperty('--headerFont', '#00283A');
+    root.style.setProperty('--fontColor', '#fff');
+    root.style.setProperty('--mainColor', '#ff8181');
+    root.style.setProperty('--bagColor', '#f4f5f7');
+
+    /* **** 新增：背景图变量 **** */
+    root.style.setProperty('--bg-day', 'url("../img/back/white_background_min.jpg")');
+    // 想换高清图就写 progressive 路径：
+    // root.style.setProperty('--bg-day', 'url("../img/back/white_background_progressive.jpg")');
+  } else {
+    /* ===== 白天 → 黑夜 ===== */
+    sessionStorage.setItem('wttandroid', false);
+
+    $('#myRadio').addClass('active');
+    $('.navigation').addClass('active');
+
+    /* 颜色变量 */
+    root.style.setProperty('--backColor', '#fff');
+    root.style.setProperty('--borderline', '#00283A');
+    root.style.setProperty('--headerCOlor', '#00283A');
+    root.style.setProperty('--headerhover', 'rgb(0, 40, 58,.8)');
+    root.style.setProperty('--headerFont', '#fff');
+    root.style.setProperty('--fontColor', '#00283A');
+    root.style.setProperty('--mainColor', '#ff8181');
+    root.style.setProperty('--bagColor', '#02162b');
+
+    /* **** 新增：背景图变量 **** */
+    root.style.setProperty('--bg-night', 'url("../img/back/black_background_min.jpg")');
+    // 想换高清图就写 progressive 路径：
+    // root.style.setProperty('--bg-night', 'url("../img/back/black_background_progressive.jpg")');
+  }
+});
 
   
 

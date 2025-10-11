@@ -13,7 +13,12 @@
 --fontColor:#00283A;
 --mainColor:#ff8181;
 --bagColor:#02162b;
+
+  /* 背景图 */
+--bg-day: url("../img/back/white_background_min.jpg");
+--bg-night: url("../img/back/black_background_min.jpg");
 }
+
 
 .content-li svg path,.buttom svg path{
   fill:#fff;
@@ -236,11 +241,10 @@ img {
 
 /* 导航 */ 
 /* 黑色主题背景 */
-.navigation.active{ 
-  background-image: url("../img/back/black_background_min.jpg"); /* 小图占位 */
-  /* background-image: url("../img/back/aitx6-0og08.webp") !important; */
-  
+.navigation.active {
+  background-image: var(--bg-night); /* ← 黑夜图 */
 }
+
 /* 默认主题 白色主题 */
 .navigation {
   margin: 0px auto 0;
@@ -248,8 +252,7 @@ img {
   background-color: transparent;
   height: 600px;
   border-radius: 20px;
-  background-image: url("../img/back/white_background_min.jpg"); /* 小图占位 */
-  /* background-image: url("../img/back/a58cbbffd2aa49c1b1e99990be912f30.jpg"); */
+  background-image: var(--bg-day);   /* ← 白天图 */
   background-attachment: fixed;
   background-size: 100%;
   background-repeat: no-repeat;
