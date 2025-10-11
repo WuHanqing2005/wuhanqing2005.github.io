@@ -9,16 +9,13 @@
     window.onscroll = function () {
       var e = e || window.event;
       var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      console.log(scrollTop )
+      console.log(scrollTop)
       if (scrollTop > mycardTop) {
         mycard.addClass('scroll')
       } else {
         mycard.removeClass('scroll')
       }
     }
- 
-
-  
 
   function initActive () {
     let root = document.querySelector(':root')
