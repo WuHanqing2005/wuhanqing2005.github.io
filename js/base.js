@@ -1,4 +1,10 @@
 (function () {
+  const clear = window.clearInterval;
+  window.clearInterval = function(id) {
+    if (id == null) return;   // null 或 undefined 直接忽略
+    clear.call(window, id);
+  };
+
   initActive()
   bindEvenInit()
   var mycard = $('#mycard')
