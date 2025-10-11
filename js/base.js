@@ -112,10 +112,6 @@ $('#minmenu').click(function () {
   }
 })
   
-  
-
-  
-  
   // loadding
   document.onreadystatechange = function () {
     if (document.readyState == 'complete') {
@@ -228,3 +224,71 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+/* ====== 7. 多语言视频映射 ====== */
+const videoMap = {
+  cn: 'fWzKn0nZQLc',
+  en: 'ALSu_zG1gXE',
+  kr: 'ALeqSgPfTaQ',
+  jp: '93t0ab3fs4I',
+  de: 'Ze13uWps_Yw'
+};
+
+/* ====== 7-A. 根据 ID 生成 iframe ====== */
+function buildIframe(id) {
+  return `
+    <iframe width="100%" height="100%"
+      src="https://www.youtube.com/embed/${id}?autoplay=0&mute=1&rel=0"
+      title="视频简历"
+      frameborder="0"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen>
+    </iframe>`;
+}
+
+/* ====== 7-B. 首次加载视频 ====== */
+function loadVideo(lang) {
+  const box = document.getElementById('video-box'); // 统一容器
+  if (!box) return;                                 // 节点不存在就退出
+  box.innerHTML = buildIframe(videoMap[lang]);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  /* 你原来的语言初始化 */
+  initLanguage();
+
+  /* 新增：读上次语言 → 加载对应视频 */
+  const lastLang = localStorage.getItem('wtt-language') || 'cn';
+  loadVideo(lastLang);
+});
+
+function switchLanguage(lang) {
+  /* ====== 你原来的代码 ====== */
+  $('[data-lang]').hide();
+  $(`[data-lang="${lang}"]`).show();
+  localStorage.setItem('wtt-language', lang);
+
+  /* ====== 新增：同时换视频 ====== */
+  loadVideo(lang);
+}
+
+function loadVideoWithPoster(lang) {
+  const id  = videoMap[lang];
+  const box = document.getElementById('video-box');
+  box.innerHTML = `
+    <div class="video-poster" style="position:relative;cursor:pointer;">
+      <img width="100%" height="100%"
+           src="https://img.youtube.com/vi/${id}/maxresdefault.jpg"
+           alt="封面">
+      <div class="play-btn" style="position:absolute;top:50%;left:50%;
+                   transform:translate(-50%,-50%);
+                   width:68px;height:68px;background:rgba(0,0,0,.65);
+                   border-radius:50%;color:#fff;font-size:24px;
+                   display:flex;align-items:center;justify-content:center;">
+        ▶
+      </div>
+    </div>`;
+  box.querySelector('.video-poster').onclick = () => {
+    box.innerHTML = buildIframe(id);   // 用户点了再插播放器
+  };
+}
