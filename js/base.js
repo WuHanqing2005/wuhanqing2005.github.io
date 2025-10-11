@@ -151,32 +151,15 @@ $('#minmenu').click(function () {
   
   // 切换语言
   function switchLanguage(lang) {
-    // 隐藏所有语言占位容器
+    // 隐藏所有语言元素
     $('[data-lang]').hide();
-
-    // 获取当前语言容器
-    const currentBox = $(`[data-lang="${lang}"]`);
-    currentBox.show();
-
-    // 如果该语言还没有 iframe，则动态创建
-    if (!currentBox.find('iframe').length) {
-      const videoUrl = currentBox.data('video') + "?autoplay=0&mute=0&rel=0";
-      const iframe = $('<iframe>', {
-        src: videoUrl,
-        width: '100%',
-        height: '100%',
-        frameborder: 0,
-        allow: 'autoplay; encrypted-media; picture-in-picture',
-        allowfullscreen: true,
-        title: '视频简历'
-      });
-      currentBox.append(iframe);
-    }
-
+    
+    // 显示选定语言的元素
+    $(`[data-lang="${lang}"]`).show();
+    
     // 保存语言选择
     localStorage.setItem('wtt-language', lang);
   }
-
   
   // 绑定语言选择事件
   $('#language-select').change(function() {
