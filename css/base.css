@@ -756,7 +756,7 @@ img {
 }
 
 
-/* 手机*/
+/* 手机 */
 @media screen and (max-width: 1250px) {
   .col>span {
       visibility: hidden;
@@ -879,6 +879,10 @@ img {
   .navigation{
     text-align: center;
     background-size: 100% 100%;
+
+    height: auto !important;
+    min-height: 0 !important;
+    padding-bottom: 20vh; /* 适当增加底部空间 */
   }
  
   .co-left{
