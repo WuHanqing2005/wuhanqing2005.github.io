@@ -241,12 +241,12 @@ img {
   /* background-image: url("../img/back/aitx6-0og08.webp") !important; */
   
 }
-/* 默认主题 白色主题 */
+/* 默认主题 白色主题 导航条*/
 .navigation {
   margin: 0px auto 0;
   width: 95%;
   background-color: transparent;
-  height: 600px;
+  height: 80vh;
   border-radius: 20px;
   background-image: url("../img/back/white_background_min.jpg"); /* 小图占位 */
   /* background-image: url("../img/back/a58cbbffd2aa49c1b1e99990be912f30.jpg"); */
@@ -267,6 +267,13 @@ img {
   font-size: 3.8rem;
   color: #fcfcfe;
   text-shadow: 0 1px 10px rgb(0 0 0 / 30%);
+  margin-bottom: clamp(20px, 4vw, 40px);
+}
+.head-title {
+  /* 手机最小 2.8rem → 桌面最大 3.8rem，中间平滑 */
+  font-size: clamp(2.8rem, 4vw, 3.8rem) !important;
+  line-height: 1.2;          /* 行高也随字号弹性 */
+  word-break: break-word;    /* 长单词允许断行 */
 }
 .navigation .buttom:hover{
   transform: scale(1.1);
@@ -975,4 +982,10 @@ img {
   border-right: 5px solid transparent;
   border-top: 5px solid var(--headerFont);
   pointer-events: none;
+}
+
+/* 处理长文本换行问题 防止撑破父容器 */
+p, a, span {
+  overflow-wrap: break-word;
+  word-break: break-all;
 }

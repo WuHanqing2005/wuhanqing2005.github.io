@@ -72,18 +72,24 @@
 .contact-item {
     display: flex;
     align-items: center;
-    font-weight: bold; /* 文本加粗 */
-    font-size: 18px; /* 调整字体大小 */
+    font-weight: bold;
+    font-size: clamp(14px, 1.8vw, 18px);
+    gap: 0.5em;                       /* 间距随字号弹性 */
 }
 
 .label {
-    white-space: nowrap;
-    width: 150px; /* 设置标签的固定宽度 */
-    text-align: left; /* 标签左对齐 */
+    /* 宽度：手机最小 100px，电脑最大 150px，中间平滑 */
+    width: clamp(100px, 20vw, 150px);
+    flex-shrink: 0;
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .value {
-    white-space: nowrap;
-    margin-left: 20px; /* 标签和值之间的间距 */
-    text-align: left; /* 值左对齐 */
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
