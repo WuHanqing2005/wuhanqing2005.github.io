@@ -360,9 +360,10 @@ img {
   top: 49%;
 }
 .content .me-card {
-  width: fit-content;
-  min-width: 285px;
-  max-width: 300px;
+  /* width: fit-content; */
+  width: 290px;
+  /* min-width: 280px; */
+  /* max-width: 300px; */
   transform: translateY(-351px);
   height: 780px;
   /* backgrounbad-color: var(--headerCOlor); */
@@ -460,6 +461,9 @@ img {
 
 .mecar-bottm .mecarbottm-key {
   font-weight: 500;
+  min-width: 80px; /* 防止被压缩 */
+  text-align: left; /* 左对齐 */
+  white-space: nowrap; /* ✅ 禁止英文断行 */
 }
 
 .mecar-bottm .mecarbottm-value {
