@@ -249,3 +249,77 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+
+
+
+
+
+
+
+// 完善的话题筛选和搜索功能
+function initTopicFilter() {
+  // 话题筛选按钮点击事件
+  document.querySelectorAll('.topic-filter li').forEach(item => {
+    item.addEventListener('click', function() {
+      // 移除所有active类
+      document.querySelectorAll('.topic-filter li').forEach(li => {
+        li.classList.remove('active');
+      });
+      
+      // 添加active类到当前点击的项
+      this.classList.add('active');
+      
+      // 应用筛选
+      applyFilters();
+    });
+  });
+}
+
+// 搜索功能
+function initSearch() {
+  const searchButton = document.getElementById('search-button');
+  const searchInput = document.getElementById('search-input');
+  
+  // 搜索按钮点击事件
+  searchButton.addEventListener('click', function() {
+    applyFilters();
+  });
+  
+  // 输入框实时搜索
+  searchInput.addEventListener('input', function() {
+    applyFilters();
+  });
+}
+
+// 综合应用筛选条件
+function applyFilters() {
+  const keyword = document.getElementById('search-input').value.toLowerCase().trim();
+  const activeTopic = document.querySelector('.topic-filter li.active').getAttribute('data-topic');
+  const articles = document.querySelectorAll('.li3-box');
+  
+  articles.forEach(article => {
+    const title = article.querySelector('a').textContent.toLowerCase();
+    const content = article.querySelector('p').textContent.toLowerCase();
+    const topics = article.getAttribute('data-topics');
+    
+    // 检查话题筛选条件
+    const matchesTopic = activeTopic === 'all' || (topics && topics.includes(activeTopic));
+    
+    // 检查搜索条件
+    const matchesSearch = !keyword || title.includes(keyword) || content.includes(keyword);
+    
+    // 同时满足话题筛选和搜索条件才显示
+    if (matchesTopic && matchesSearch) {
+      article.style.display = 'block';
+    } else {
+      article.style.display = 'none';
+    }
+  });
+}
+
+// 在DOM加载完成后初始化
+document.addEventListener('DOMContentLoaded', function() {
+  initTopicFilter();
+  initSearch();
+});

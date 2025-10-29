@@ -184,3 +184,134 @@
     margin-bottom: 8px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 话题筛选按钮样式 */
+.topic-filter {
+  margin-bottom: 20px;
+}
+.topic-filter ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+}
+.topic-filter li {
+  margin-right: 10px;
+  padding: 5px 10px;
+  background-color: var(--headerCOlor);
+  border-radius: 10px;
+  color: var(--headerFont);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.topic-filter li:hover,
+.topic-filter li.active {
+  background-color: var(--mainColor);
+}
+
+/* 搜索栏样式 */
+.search-bar {
+  margin-bottom: 20px;
+}
+.search-bar input {
+  padding: 5px 10px;
+  border: 1px solid var(--headerFont);
+  border-radius: 5px;
+  width: 70%;
+}
+.search-bar button {
+  padding: 5px 10px;
+  background-color: var(--headerCOlor);
+  border: none;
+  border-radius: 5px;
+  color: var(--headerFont);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.search-bar button:hover {
+  background-color: var(--mainColor);
+}
+
+/* 新增话题样式 */
+.add-topic {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.add-topic input {
+  padding: 5px 10px;
+  border: 1px solid var(--headerFont);
+  border-radius: 5px;
+  flex: 1;
+  background-color: var(--backColor);
+  color: var(--fontColor);
+}
+
+.add-topic button {
+  padding: 5px 15px;
+  background-color: var(--headerCOlor);
+  border: none;
+  border-radius: 5px;
+  color: var(--headerFont);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-topic button:hover {
+  background-color: var(--mainColor);
+}
+
+/* 话题标签点击效果 */
+.address-left span {
+  margin-right: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.address-left span:hover {
+  background-color: var(--mainColor);
+  transform: translateY(-2px);
+}
+
+/* 搜索栏样式优化 */
+.search-bar {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.search-bar input {
+  padding: 8px 12px;
+  border: 1px solid var(--headerFont);
+  border-radius: 5px;
+  flex: 1;
+  background-color: var(--backColor);
+  color: var(--fontColor);
+}
+
+.search-bar button {
+  padding: 8px 20px;
+  background-color: var(--headerCOlor);
+  border: none;
+  border-radius: 5px;
+  color: var(--headerFont);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+  background-color: var(--mainColor);
+}

@@ -490,13 +490,26 @@
             <span>01</span>
           </h3>
 
-          <div class="time-tags-wrap">
-            <span>2022年9月 <i>2</i></span>
-            <span>2022年8月 <i>2</i></span>
-            <span>2022年7月 <i>3</i></span>
+          <!-- 话题筛选按钮 -->
+          <div class="topic-filter">
+            <ul>
+              <li class="active" data-topic="all">全部</li>
+              <li data-topic="vue">Vue</li>
+              <li data-topic="踩坑">踩坑</li>
+              <li data-topic="电路学习">电路学习</li>
+              <li data-topic="数学学习">数学学习</li>
+              <li data-topic="网页学习">网页学习</li>
+              <li data-topic="校园生活">校园生活</li>
+            </ul>
           </div>
 
-          <div class="carbox li3-box">
+          <!-- 搜索栏 - 保持原样不变 -->
+          <div class="search-bar">
+            <input type="text" id="search-input" placeholder="搜索博客标题或内容">
+            <button id="search-button">搜索</button>
+          </div>
+
+          <div class="carbox li3-box" data-topics="vue, 踩坑, 数学学习">
             <a href="./blog-20250101.html">数组的响应式检测：(解决方法：总是返回一个新数组)</a>
             <p>Vue.set(vm.items, indexOfItem, newValue) <br>
               vm.$set(vm.items, indexOfItem, newValue) // vm.$set是Vue.set方法的一个别名 <br>
@@ -529,7 +542,7 @@
             </div>
           </div>
           
-          <div class="carbox li3-box">
+          <div class="carbox li3-box" data-topics="网页学习, 数学学习">
             <a>computed和method区别</a>
             <p>computed具有缓存功能，计算结果(data依赖数据)发生变化时才会被调用；(结果相同即使多次调用也只执行一次)
               methods页面加载调用一次，主动触发就调用(只执行逻辑代码)
@@ -560,7 +573,7 @@
               </div>
             </div>
           </div>
-          <div class="carbox li3-box">
+          <div class="carbox li3-box" data-topics="校园生活">
             <a>对象响应式属性的添加或删除(！！致使引导地址发生改变才会触发响应)</a>
             <p>
               Vue.set(object, key, value) <br>
