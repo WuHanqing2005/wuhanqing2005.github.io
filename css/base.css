@@ -997,3 +997,27 @@ p, a, span {
   overflow-wrap: break-word;
   word-break: break-all;
 }
+
+/* 页面底部备案信息 */
+/* 底部容器布局 */
+.carbox.copybottm {
+  display: flex;
+  flex-wrap: wrap;           /* 窄屏时允许换行，但每个元素整行换 */
+  justify-content: space-between; /* 三个 a 标签水平分散 */
+  align-items: center;
+  gap: 10px;                 /* 元素之间间距，可根据需要调整 */
+}
+
+/* 底部 a 标签保持整行不换行 */
+.carbox.copybottm a {
+  white-space: nowrap;       /* 禁止 a 标签内部换行 */
+  display: inline-block;
+}
+
+/* 底部 - 所有 a 标签中的图标统一高度 */
+.carbox.copybottm a img.icp-icon {
+  height: 20px;      /* 统一高度 */
+  width: auto;       /* 保持宽高比 */
+  margin-right: 4px; /* 图标和文字间距 */
+  vertical-align: middle;
+}
