@@ -1,0 +1,184 @@
+/* Styles for embedded Markdown (showmd)
+   Uses site CSS variables so day/night theme changes are automatic.
+   Applied to the container with id #md-embed inside .carbox.li3-box
+*/
+
+#md-embed{
+  font-family: "Microsoft YaHei", "Noto Sans", Arial, sans-serif;
+  line-height: 1.8;
+  /* Use headerFont so markdown text matches card text and remains readable
+     when the site switches between day/night variables. */
+  color: var(--headerFont);
+  background: transparent; /* container (.carbox) provides card background */
+  padding: 18px;
+  box-sizing: border-box;
+  transition: color .25s ease, background .25s ease;
+}
+
+#md-embed p { text-indent: 2em; margin: 0 0 1em; color: var(--headerFont); }
+#md-embed h1, #md-embed h2, #md-embed h3 {
+  font-family: "Arial", "Microsoft YaHei", "Noto Sans", sans-serif;
+  font-weight: 600;
+  margin: 0.6em 0 0.4em;
+  color: var(--headerFont);
+}
+
+#md-embed a { color: var(--mainColor); }
+
+#md-embed pre {
+  background: var(--textblock-bg);
+  /* pre/code text should match headerFont for contrast on card backgrounds */
+  color: var(--headerFont);
+  padding: 12px;
+  overflow: auto;
+  border-radius: 6px;
+  border: 1px solid var(--borderline);
+}
+
+#md-embed code { color: var(--headerFont); background: transparent; padding: .15em .3em; border-radius: 4px; }
+
+#md-embed table.tableStyle { font-family: inherit; font-size: 13px; color: var(--headerFont); border-collapse: collapse; width:100%; }
+#md-embed table.tableStyle th, #md-embed table.tableStyle td { padding:8px; border:1px solid var(--borderline); }
+
+.md-loading { color: var(--headerFont); opacity: .85; }
+
+/* KaTeX: force math to inherit site text color so formulas respond to theme */
+/* KaTeX: force math to inherit site text color so formulas respond to theme */
+#md-embed .katex,
+#md-embed .katex * {
+  color: var(--headerFont) !important;
+}
+
+/* Ensure inline KaTeX remains inline and aligned with text. Block/display math (katex-display)
+   will be wrapped by JS into .md-katex-wrap and displayed as block to allow scrolling. */
+#md-embed .katex { display: inline-block; vertical-align: baseline; }
+.md-katex-wrap .katex { display: block; }
+
+/* Prism: make sure background and text colors follow theme variables */
+#md-embed pre[class*="language-"],
+#md-embed code[class*="language-"] {
+  background: var(--textblock-bg) !important;
+  color: var(--headerFont) !important;
+  border-color: var(--borderline) !important;
+}
+
+/* Images and iframes responsiveness */
+#md-embed img, #md-embed iframe{ max-width: 100%; height: auto; display:block; margin: .6em 0; }
+
+/* Prevent long words/URLs from overflowing on small screens */
+#md-embed{ word-break: break-word; overflow-wrap: anywhere; }
+
+/* Wrappers used by showmd.js to provide touch-friendly horizontal scrolling */
+.md-code-wrap, .md-table-wrap, .md-katex-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.md-code-wrap pre { margin: 0; }
+.md-code-wrap pre code { display: block; }
+
+/* Ensure wrappers take the full available width and don't grow beyond the parent container */
+.md-code-wrap, .md-table-wrap, .md-katex-wrap { display: block; width: 100%; box-sizing: border-box; max-width: 100%; }
+
+/* Make inline code wrap on narrow viewports instead of forcing overflow */
+#md-embed code:not([class*="language-"]) { white-space: break-spaces; word-break: break-word; }
+
+/* KaTeX display wrappers: allow formulas to scroll horizontally on tiny screens */
+.md-katex-wrap { margin: .5em 0; }
+/* Keep the formula as a single line inside the wrapper so it can be scrolled horizontally
+  rather than overflowing the card. The wrapper itself constrains the width to its parent. */
+.md-katex-wrap { /* ensure wrapper itself won't expand beyond parent and will allow horizontal scroll */
+  width: 100%;
+  max-width: calc(100% - 6px); /* conservative: leave small space to avoid tiny overflow */
+  box-sizing: border-box;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap; /* keep contents on a single line */
+  padding-right: 6px; /* small insurance padding so child edges don't touch outer boundary */
+}
+.md-katex-wrap .katex { display: inline-block; white-space: nowrap; max-width: none; vertical-align: baseline; }
+.md-katex-wrap .katex .katex-html { white-space: nowrap !important; }
+
+/* Small safeguard: prevent child transforms/margins from visually escaping the wrapper */
+.md-katex-wrap .katex, .md-katex-wrap .katex * { box-sizing: border-box; }
+
+/* Also handle KaTeX's native display class in case JS wrapper isn't present */
+#md-embed .katex-display,
+#md-embed .katex-display .katex {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+}
+
+/* Minimize / visually hide horizontal scrollbars but keep scrolling functional.
+   Targets the md wrappers and KaTeX display areas. WebKit, Firefox and IE/Edge handled. */
+.md-katex-wrap, .md-code-wrap, .md-table-wrap, #md-embed .katex-display {
+  -ms-overflow-style: -ms-autohiding-scrollbar; /* IE/Edge */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(0,0,0,0.01) transparent; /* Firefox: thumb + track */
+}
+
+/* WebKit browsers: reduce horizontal scrollbar height to 1px and make it nearly transparent */
+.md-katex-wrap::-webkit-scrollbar,
+.md-code-wrap::-webkit-scrollbar,
+.md-table-wrap::-webkit-scrollbar,
+#md-embed .katex-display::-webkit-scrollbar {
+  height: 1px;
+}
+.md-katex-wrap::-webkit-scrollbar-track,
+.md-code-wrap::-webkit-scrollbar-track,
+.md-table-wrap::-webkit-scrollbar-track,
+#md-embed .katex-display::-webkit-scrollbar-track {
+  background: transparent;
+}
+.md-katex-wrap::-webkit-scrollbar-thumb,
+.md-code-wrap::-webkit-scrollbar-thumb,
+.md-table-wrap::-webkit-scrollbar-thumb,
+#md-embed .katex-display::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.01);
+  border-radius: 1px;
+}
+
+/* For dark themes the subtle thumb may be too light; provide a slightly lighter thumb on dark
+   using prefers-color-scheme if supported (best-effort) */
+@media (prefers-color-scheme: dark) {
+  .md-katex-wrap::-webkit-scrollbar-thumb,
+  .md-code-wrap::-webkit-scrollbar-thumb,
+  .md-table-wrap::-webkit-scrollbar-thumb,
+  #md-embed .katex-display::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.01);
+  }
+  .md-katex-wrap, .md-code-wrap, .md-table-wrap, #md-embed .katex-display {
+    scrollbar-color: rgba(255,255,255,0.01) transparent;
+  }
+}
+
+/* Keep inner html/layout from forcing wrapper overflow */
+#md-embed .katex-display .katex * { white-space: nowrap !important; }
+
+/* Tables: allow horizontal scroll on narrow screens while preserving full-width on desktop */
+#md-embed table { width: 100%; }
+.md-table-wrap { margin: .6em 0; }
+
+/* Small-screen adjustments */
+@media (max-width: 600px) {
+  #md-embed{ padding: 12px; font-size: 15px; line-height: 1.6; }
+  #md-embed pre { padding: 10px; font-size: 13px; }
+  #md-embed table.tableStyle th, #md-embed table.tableStyle td { padding: 6px; font-size: 13px; }
+}
+
+/* Tablet and phone: scale markdown typography to 80% of desktop for better visual balance
+   This applies to all text inside #md-embed so headings and paragraphs scale proportionally. */
+@media (max-width: 1250px) {
+  /* Use percentage so sizes are exactly 80% of desktop/browser defaults */
+  #md-embed { font-size: 80%; line-height: 1.6; }
+  /* Code blocks should also scale; keep a readable minimum via font-size in % */
+  #md-embed pre { font-size: 80%; }
+  #md-embed table.tableStyle th, #md-embed table.tableStyle td { font-size: 80%; }
+}
+
+/* Ensure Prism tokens do not use hard-coded colors; fallback to headerFont for contrast */
+#md-embed .token.comment, #md-embed .token.prolog, #md-embed .token.doctype, #md-embed .token.cdata { color: var(--headerFont) !important; opacity: .7; }
+#md-embed .token.punctuation { color: var(--headerFont) !important; }

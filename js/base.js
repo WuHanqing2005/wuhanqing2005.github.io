@@ -62,14 +62,14 @@
       if (nav.classList.contains('active')) {
         // 黑色主题
         const imgBlack = new Image();
-        imgBlack.src = "../img/back/black_background_progressive.jpg";
+        imgBlack.src = "/img/back/black_background_progressive.jpg";
         imgBlack.onload = () => {
           nav.style.backgroundImage = `url('${imgBlack.src}')`;
         };
       } else {
         // 白色主题
         const imgWhite = new Image();
-        imgWhite.src = "../img/back/white_background_progressive.jpg";
+        imgWhite.src = "/img/back/white_background_progressive.jpg";
         imgWhite.onload = () => {
           nav.style.backgroundImage = `url('${imgWhite.src}')`;
         };
@@ -165,35 +165,121 @@ $('#minmenu').click(function () {
   }
 })();
 
-// 语言切换功能
+// 语言切换功能（改为在根目录的语言文件夹之间进行跳转）
 (function() {
-  // 初始化语言
-  function initLanguage() {
-    const savedLang = localStorage.getItem('wtt-language') || 'cn';
-    $('#language-select').val(savedLang);
-    switchLanguage(savedLang);
+  // 语言与文件夹映射（value -> folder）
+  const folderMap = {
+    cn: 'zh-CN',
+    en: 'en-US',
+    kr: 'ko-KR',
+    jp: 'ja-JP',
+    de: 'de-DE'
+  };
+
+  // 从当前 pathname 推断当前语言 value（cn/en/kr/jp/de）
+  function detectLangFromPath() {
+    try {
+      const m = location.pathname.match(/^\/(zh-CN|en-US|ko-KR|ja-JP|de-DE)(?:\/|$)/);
+      if (m && m[1]) {
+        const folder = m[1];
+        for (const key in folderMap) {
+          if (folderMap[key] === folder) return key;
+        }
+      }
+    } catch (e) { /* ignore */ }
+    // fallback to saved value or cn
+    return localStorage.getItem('wtt-language') || 'cn';
   }
-  
-  // 切换语言
-  function switchLanguage(lang) {
-    // 隐藏所有语言元素
-    $('[data-lang]').hide();
-    
-    // 显示选定语言的元素
-    $(`[data-lang="${lang}"]`).show();
-    
+
+  // 构造目标 URL：将当前路径替换为目标语言文件夹下的同名路径
+  function buildTargetUrl(targetLangValue) {
+    const targetFolder = folderMap[targetLangValue] || folderMap['en'];
+    let pathname = location.pathname || '/';
+
+    // 保留 search + hash
+    const search = location.search || '';
+    const hash = location.hash || '';
+
+    // 去掉开头的斜杠以方便拼接
+    let stripped = pathname.replace(/^\//, '');
+
+    // 如果当前路径以已知语言文件夹开头，去掉该段
+    stripped = stripped.replace(/^(zh-CN|en-US|ko-KR|ja-JP|de-DE)(\/|$)/, '');
+
+    // 当 stripped 为空或为目录时，保留为 index.html
+    if (!stripped || stripped.endsWith('/')) {
+      stripped = stripped || 'index.html';
+      // 如果原路径以 /folder/ 结尾且没有明确文件名，保留 index.html
+    }
+
+    // 构造新路径
+    const newPath = '/' + targetFolder + '/' + stripped.replace(/^\//, '');
+    return location.origin + newPath + search + hash;
+  }
+
+  // 切换语言：将页面跳转到对应语言文件夹下的同名文件
+  function switchLanguageToFolder(langValue) {
+    if (!langValue) return;
     // 保存语言选择
-    localStorage.setItem('wtt-language', lang);
+    localStorage.setItem('wtt-language', langValue);
+
+    const targetUrl = buildTargetUrl(langValue);
+    // 直接跳转到目标页面
+    if (targetUrl !== location.href) {
+      window.location.href = targetUrl;
+    }
   }
-  
-  // 绑定语言选择事件
+
+  // 初始化：根据 URL 或 localStorage 设置下拉框值
+  function initLanguageSelect() {
+    const detected = detectLangFromPath();
+    $('#language-select').val(detected);
+    // 同步头部显示的国旗（如果存在）
+    try {
+      var flag = document.getElementById('lang-flag');
+      if (flag) {
+        var map = { cn: 'cn', en: 'us', kr: 'kr', jp: 'jp', de: 'de' };
+        var code = map[detected] || 'us';
+        // 使用站点根路径，避免不同目录层级导致的相对路径错误
+        flag.src = '/img/flag/' + code + '.svg';
+      }
+    } catch (e) { /* ignore */ }
+  }
+
+  // 绑定变化事件：跳转到对应文件夹
   $('#language-select').change(function() {
-    const selectedLang = $(this).val();
-    switchLanguage(selectedLang);
+    const selected = $(this).val();
+    // 更新头部国旗显示
+    try {
+      var flag = document.getElementById('lang-flag');
+      if (flag) {
+        var map = { cn: 'cn', en: 'us', kr: 'kr', jp: 'jp', de: 'de' };
+        var code = map[selected] || 'us';
+        // 使用站点根路径，避免不同目录层级导致的相对路径错误
+        flag.src = '/img/flag/' + code + '.svg';
+      }
+    } catch (e) { /* ignore */ }
+
+    // 移动端/平板：语言切换时自动关闭汉堡菜单
+    try {
+      var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      if (vw <= 1250) {
+        var minmenu = document.getElementById('minmenu');
+        var menuList = document.querySelector('.menu_list');
+        if (minmenu && minmenu.classList.contains('active')) {
+          minmenu.classList.remove('active');
+        }
+        if (menuList && menuList.classList.contains('active')) {
+          menuList.classList.remove('active');
+        }
+      }
+    } catch (e) { /* ignore */ }
+
+    switchLanguageToFolder(selected);
   });
-  
-  // 初始化语言
-  initLanguage();
+
+  // 页面加载时初始化选择器
+  initLanguageSelect();
 })();
 
 window.addEventListener("load", () => {
@@ -201,7 +287,7 @@ window.addEventListener("load", () => {
   const blackNav = document.querySelector(".navigation.active");
   if (blackNav) {
     const imgBlack = new Image();
-    imgBlack.src = "../img/back/black_background_progressive.jpg"; // 高清图
+  imgBlack.src = "/img/back/black_background_progressive.jpg"; // 高清图
     imgBlack.onload = () => {
       blackNav.style.backgroundImage = `url('${imgBlack.src}')`;
     };
@@ -211,7 +297,7 @@ window.addEventListener("load", () => {
   const whiteNav = document.querySelector(".navigation:not(.active)");
   if (whiteNav) {
     const imgWhite = new Image();
-    imgWhite.src = "../img/back/white_background_progressive.jpg"; // 高清图
+  imgWhite.src = "/img/back/white_background_progressive.jpg"; // 高清图
     imgWhite.onload = () => {
       whiteNav.style.backgroundImage = `url('${imgWhite.src}')`;
     };
@@ -220,8 +306,10 @@ window.addEventListener("load", () => {
 
 // 微信号复制函数
 document.addEventListener('DOMContentLoaded', function() {
-  var wechatBtn = document.getElementById('wechat-copy');
-  if (wechatBtn) {
+  // attach to all elements that may (incorrectly) share this id
+  var wechatEls = document.querySelectorAll('#wechat-copy');
+  wechatEls.forEach(function(wechatBtn) {
+    if (!wechatBtn) return;
     wechatBtn.addEventListener('click', function(e) {
       e.preventDefault();
       var wechatId = 'Daniel_Qinghan';
@@ -231,23 +319,43 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('复制失败，请手动复制微信号：' + wechatId);
       });
     });
-  }
+  });
 });
 
 // QQ号复制函数
 document.addEventListener('DOMContentLoaded', function() {
-  var wechatBtn = document.getElementById('qq-copy');
-  if (wechatBtn) {
-    wechatBtn.addEventListener('click', function(e) {
+  // attach to all elements that may (incorrectly) share this id
+  var qqEls = document.querySelectorAll('#qq-copy');
+  qqEls.forEach(function(qqBtn) {
+    if (!qqBtn) return;
+    qqBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      var wechatId = '3301208605';
-      navigator.clipboard.writeText(wechatId).then(function() {
+      var qqId = '3301208605';
+      navigator.clipboard.writeText(qqId).then(function() {
         alert('QQ号已复制到剪贴板！');
       }, function() {
-        alert('复制失败，请手动复制微信号：' + wechatId);
+        alert('复制失败，请手动复制QQ号：' + qqId);
       });
     });
-  }
+  });
+});
+
+// kakao号复制函数
+document.addEventListener('DOMContentLoaded', function() {
+  // attach to all elements that may (incorrectly) share this id
+  var kakaoEls = document.querySelectorAll('#kakao-copy');
+  kakaoEls.forEach(function(kakaoBtn) {
+    if (!kakaoBtn) return;
+    kakaoBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      var kakaoId = 'Daniel_Qinghan';
+      navigator.clipboard.writeText(kakaoId).then(function() {
+        alert('Kakao号已复制到剪贴板！');
+      }, function() {
+        alert('复制失败，请手动复制Kakao号：' + kakaoId);
+      });
+    });
+  });
 });
 
 
@@ -322,4 +430,36 @@ function applyFilters() {
 document.addEventListener('DOMContentLoaded', function() {
   initTopicFilter();
   initSearch();
+  // 填充文章列表中的话题标签（从每个 .li3-box 的 data-topics 读取）
+  try {
+    initArticleTopics();
+  } catch (e) {
+    // ignore
+  }
 });
+
+// 将每篇文章的 data-topics 写入对应的 .article-topic 元素
+function initArticleTopics() {
+  document.querySelectorAll('.li3-box').forEach(box => {
+    const topics = box.getAttribute('data-topics');
+    if (!topics) return;
+
+    // 优先寻找显式的占位 span.article-topic
+    let span = box.querySelector('.article-topic');
+    if (span) {
+      for (const topic of topics.split(',').map(t => t.trim())) {
+        const topicSpan = document.createElement('span');
+        topicSpan.textContent = '#' + topic;
+        span.appendChild(topicSpan);
+      }
+      return;
+    }
+
+    // 兜底：如果没有 article-topic，则把最后一个 .address-left 内的 span 更新为话题
+    const left = box.querySelector('.address-left');
+    if (left) {
+      const last = left.querySelector('span:last-of-type');
+      if (last) last.textContent = '# ' + topics;
+    }
+  });
+}
