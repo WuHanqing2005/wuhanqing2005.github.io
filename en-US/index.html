@@ -316,7 +316,7 @@
           </h3>
           <!-- lang=CN -->
           <div class="carbox li3-box" id="video-resume-box">
-            <!-- 默认兜底：B 站 -->
+            <!-- 默认兜底: B 站 -->
             <div id="video-fallback">
               <iframe
                 src="https://player.bilibili.com/player.html?bvid=BV1xX4y1J7Lj&autoplay=0"
@@ -342,7 +342,7 @@
         /**
          * 模拟 IP 测试开关
          * 留空 "" 则走用户真实 IP
-         * 例：window.simulateIP = "47.100.108.36";   // 国内IP
+         * 例: window.simulateIP = "47.100.108.36";   // 国内IP
          *     window.simulateIP = "180.71.27.250";   // 海外IP
          *     window.simulateIP = "";                // 留空则用真实IP
          */
@@ -352,7 +352,7 @@
           var box = document.getElementById('video-resume-box');
           if (!box) return;
 
-          // 构造 GeoIP API 地址：当 window.simulateIP 非空时查询指定 IP，否则查询当前请求者的 IP
+          // 构造 GeoIP API 地址: 当 window.simulateIP 非空时查询指定 IP，否则查询当前请求者的 IP
           var api = window.simulateIP && window.simulateIP.trim()
                   ? 'https://api.ip.sb/geoip/' + encodeURIComponent(window.simulateIP.trim())
                   : 'https://api.ip.sb/geoip';
@@ -388,7 +388,7 @@
               }
             })
             .catch(function (err) {
-              // 常见场景：超时/被阻断/网络错误/非 2xx 返回
+              // 常见场景: 超时/被阻断/网络错误/非 2xx 返回
               if (err && err.name === 'AbortError') {
                 console.warn('GeoIP 请求超时，使用默认 B 站回退');
               } else {
@@ -608,7 +608,7 @@
                 <img src="./img/project/hualang.png" alt="">
               </a>
               <div class="li6car-title">
-                画廊海报：基本实现:iframe/a/marquee
+                画廊海报: 基本实现:iframe/a/marquee
                 <br><br>2022.03.18
                 <div class="borderbotm"></div>
                 <a href="http://123.56.144.92/hualang/index.html">进入浏览</a>
@@ -660,7 +660,7 @@
           </a>
 
           <p>
-            如有投诉建议，请联系：
+            如有投诉建议，请联系: 
             <a href="mailto:wuhanqing2005@gmail.com" style="text-decoration: underline;">
               wuhanqing2005@gmail.com
             </a>

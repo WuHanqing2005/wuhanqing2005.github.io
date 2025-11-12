@@ -337,7 +337,7 @@
               <img src="./img/project/uniapp.png" alt="">
               <img src="./img/project/daohanglan.png" alt="">
             </div>
-            <p>原因一：vue-cli npm run build 命令打包时默认会把 dependencies 中的依赖统一打包，这就导致打包后的 vendor.js 文件过大，从而使得首次启动时下载 vendor.js
+            <p>原因一: vue-cli npm run build 命令打包时默认会把 dependencies 中的依赖统一打包，这就导致打包后的 vendor.js 文件过大，从而使得首次启动时下载 vendor.js
               缓慢。</p>
             <div class="text-block">
               <blockquote>
@@ -347,12 +347,12 @@
             <p class="text-hover">
               ①在项目 根目录 index.html 使用cdn节点引入各种依赖 <br>
               ②在项目 根目录 build/webpack.base.config.js 中 module.exports 内添加 externals <br>
-              ③在项目 根目录 src/mian.js 中将以上通过CDN已经引入的依赖 import ... from ... 删除(如：import Vue from
+              ③在项目 根目录 src/mian.js 中将以上通过CDN已经引入的依赖 import ... from ... 删除(如: import Vue from
               'vue')，若没有删除则webpack还是会把对应的依赖进行打包。
             </p>
 
 
-            <p>原因二：vue-cli npm run build 命令打包时默认会生成 相对应的map(调试和日志代码)文件，从而导致打包后的整个 static文件夹
+            <p>原因二: vue-cli npm run build 命令打包时默认会生成 相对应的map(调试和日志代码)文件，从而导致打包后的整个 static文件夹
               过大(尤其是vendor.js.map最大)，使得部署和上传缓慢。</p>
             <div class="text-block">
               <blockquote>
@@ -363,11 +363,11 @@
               在项目 根目录 config/index.js 中 build 内找到 productionSourceMap: true,　把 true改为false。从而重新打包以后，系统就不会自动生成 map文件了。
             </p>
 
-            <p>原因三：vue-cli npm run build 命令打包时 压缩优化不彻底。这里 webpack 其实自带有一个优化打包的方法(Gzip 文件压缩)，只是 vue-cli 默认没有使用。
+            <p>原因三: vue-cli npm run build 命令打包时 压缩优化不彻底。这里 webpack 其实自带有一个优化打包的方法(Gzip 文件压缩)，只是 vue-cli 默认没有使用。
               (在node服务器在中也可以使用Gzip压缩)</p>
             <div class="text-block">
               <blockquote>
-                解决法案：webpack 自带优化打包的方法(Gzip 文件压缩)
+                解决法案: webpack 自带优化打包的方法(Gzip 文件压缩)
               </blockquote>
             </div>
             <p class="text-hover">
@@ -390,6 +390,37 @@
             <div class="borderbotm"></div>
             <span>01</span>
           </h3>
+
+          <!-- No.5 -->
+          <div class="carbox li3-box">
+            <h3>
+              <span>PRE: Introduction to Electronic Engineering</span>
+            </h3>
+
+            <a href="../resource/Introduction to Electronic Engineering.pptx" target="_blank">
+              <p>
+                <span>Download PPT: Introduction to Electronic Engineering.pptx</span>
+              </p>
+            </a>
+
+            <div class="address-wrap">
+              <div class="address-left">
+                <!--
+                <span>vue</span>
+                <span>踩坑</span>
+                -->
+              </div>
+              <div class="address-right">
+                <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                  xmlns="http://www.w3.org/2000/svg" p-id="1979" width="20" height="20">
+                  <path
+                    d="M192 512a320 320 0 1 1 640 0 320 320 0 0 1-640 0zM512 128a384 384 0 1 0 0 768 384 384 0 0 0 0-768z m21.333333 224a32 32 0 0 0-64 0V554.666667h202.666667a32 32 0 0 0 0-64H533.333333V352z"
+                    fill="#222222" p-id="1980"></path>
+                </svg>
+                <span>2025-11-12 23:00(KST)</span>
+              </div>
+            </div>
+          </div>
 
           <!-- No.4 -->
           <div class="carbox li3-box">
@@ -618,7 +649,7 @@
           </a>
 
           <p>
-            如有投诉建议，请联系：
+            如有投诉建议，请联系: 
             <a href="mailto:wuhanqing2005@gmail.com" style="text-decoration: underline;">
               wuhanqing2005@gmail.com
             </a>
