@@ -2,27 +2,94 @@
   initActive()
   bindEvenInit()
   var mycard = $('#mycard')
-  
-    let mycardTop = mycard&&mycard.offset()&&mycard.offset().top;
-    // let height=$('.header').height()
-    // console.log(mycardTop,height)
-    window.onscroll = function () {
-      var e = e || window.event;
-      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      console.log(scrollTop)
-      if (scrollTop > mycardTop) {
-        mycard.addClass('scroll')
-      } else {
-        mycard.removeClass('scroll')
-      }
+
+  let mycardTop = mycard && mycard.offset() && mycard.offset().top;
+  // let height=$('.header').height()
+  // console.log(mycardTop,height)
+  window.onscroll = function () {
+    var e = e || window.event;
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    // console.log(scrollTop)
+    if (scrollTop > mycardTop) {
+      mycard.addClass('scroll')
+    } else {
+      mycard.removeClass('scroll')
     }
+  }
+
+  /**
+   * giscus 主题同步相关
+   * - 通过 postMessage 向 giscus iframe 发送 setConfig 请求，动态切换 theme
+   * - 支持页面上多个 .giscus 容器（会遍历所有 iframe）
+   */
+  function waitForGiscusIframes(timeout = 8000) {
+    const wraps = document.querySelectorAll('.giscus');
+    if (!wraps || wraps.length === 0) return Promise.reject('no .giscus container found');
+
+    // 如果已有 iframe，立即返回
+    const existing = Array.from(document.querySelectorAll('.giscus iframe.giscus-frame, .giscus iframe'));
+    if (existing.length) return Promise.resolve(existing);
+
+    return new Promise((resolve, reject) => {
+      const start = Date.now();
+      const mo = new MutationObserver(() => {
+        const found = Array.from(document.querySelectorAll('.giscus iframe.giscus-frame, .giscus iframe'));
+        if (found.length) {
+          mo.disconnect();
+          resolve(found);
+        } else if (Date.now() - start > timeout) {
+          mo.disconnect();
+          reject('timeout waiting for giscus iframe');
+        }
+      });
+      // Observe body subtree for inserted iframes
+      mo.observe(document.body, { childList: true, subtree: true });
+    });
+  }
+
+  function postGiscusTheme(themeName) {
+    // themeName can be 'dark'/'light' or any giscus-supported theme name or a CSS URL
+    waitForGiscusIframes().then(iframes => {
+      iframes.forEach(iframe => {
+        try {
+          iframe.contentWindow.postMessage({
+            giscus: {
+              setConfig: {
+                theme: themeName
+              }
+            }
+          }, 'https://giscus.app');
+        } catch (e) {
+          // 可能因跨域访问抛错，捕获并记录
+          console.warn('Failed to postMessage to giscus iframe', e);
+        }
+      });
+    }).catch(err => {
+      // 如果没有 iframe 或等待超时，记录但不中断流程
+      console.warn('giscus iframe not ready:', err);
+    });
+  }
+
+  // 根据当前页面 UI 状态判断主题，并发送给 giscus
+  function syncGiscusThemeFromUI() {
+    try {
+      // 你的逻辑里 #myRadio 有 .active 代表黑色主题
+      const isDark = document.querySelector('#myRadio') && document.querySelector('#myRadio').classList.contains('active');
+      const theme = isDark ? 'dark' : 'light';
+      postGiscusTheme(theme);
+    } catch (e) {
+      console.warn('syncGiscusThemeFromUI error', e);
+    }
+  }
+
+  // 暴露全局方法以便手动触发（控制台或其他脚本）
+  window.syncGiscusThemeFromUI = syncGiscusThemeFromUI;
 
   function initActive () {
     let root = document.querySelector(':root')
     var active = sessionStorage.getItem('wttandroid')
-    
-    
-    if (active && active == 'true') { //非第一次登录 且是开灯(白色)
+
+    if (active && active == 'true') { // 非第一次登录 且是开灯(白色)
       $('#myRadio').removeClass('active')
       $('.navigation').removeClass('active')
 
@@ -34,10 +101,11 @@
       root.style.setProperty('--fontColor', '#fff' )
       root.style.setProperty('--mainColor', '#ff8181' )
       root.style.setProperty('--bagColor', '#f4f5f7')
-    } else { //第一次登录或是黑色时 默认变成黑色
+
+    } else { // 第一次登录或是黑色时 默认变成黑色
       $('#myRadio').addClass('active')
       $('.navigation').addClass('active')
-      
+
       root.style.setProperty('--backColor', '#fff')
       root.style.setProperty('--borderline', '#00283A')
       root.style.setProperty('--headerCOlor', '#00283A')
@@ -47,9 +115,11 @@
       root.style.setProperty('--mainColor', '#ff8181' )
       root.style.setProperty('--bagColor','#02162b' )
     }
+
+    // 尝试同步 giscus 的主题到当前 UI（如果 iframe 存在，会生效）
+    // 延迟一点以提高 giscus script 插入 iframe 的成功率
+    setTimeout(syncGiscusThemeFromUI, 200);
   }
-
-
 
   $('#myRadio').click(function () {
     // h1
@@ -76,9 +146,9 @@
       }
     }
 
-    if ($('#myRadio').hasClass('active')) { //现在黑色变成白色
+    if ($('#myRadio').hasClass('active')) { // 现在黑色变成白色
       sessionStorage.setItem('wttandroid', true)
-      
+
       $('#myRadio').removeClass('active')
       $('.navigation').removeClass('active')
 
@@ -93,12 +163,12 @@
 
       updateNavigationBg();
 
-    } else {//现在白色变成黑色
+    } else {// 现在白色变成黑色
       sessionStorage.setItem('wttandroid', false)
-      
+
       $('#myRadio').addClass('active')
       $('.navigation').addClass('active')
-      
+
       root.style.setProperty('--backColor', '#fff')
       root.style.setProperty('--borderline', '#00283A')
       root.style.setProperty('--headerCOlor', '#00283A')
@@ -110,56 +180,58 @@
 
       updateNavigationBg();
     }
-})
 
-  
+    // 在主题切换完成后，立即同步 giscus 主题（把当前 UI 主题转换为 giscus 的 'dark' / 'light'）
+    // 使用短延迟确保 DOM/class 已更新
+    setTimeout(syncGiscusThemeFromUI, 50);
+  })
 
-   
-$('#zhezhao>.close').click(function () {
-  console.log('遮罩层')
-  if ($('#zhezhao').hasClass('active')) {
-    $('#zhezhao').removeClass('active')
-    document.getElementById('videoResumeC').pause();
-  } else {
-    $('#zhezhao').addClass('active')
-  }
-})
-  
-$('#minmenu').click(function () {
-  console.log('遮罩层')
-  if ($('#minmenu').hasClass('active')) {
-    $('#minmenu').removeClass('active');
-    $('.menu_list').removeClass('active');
-    
-  } else {
-    $('#minmenu').addClass('active')
-    $('.menu_list').addClass('active')
-  }
-})
-  
+  $('#zhezhao>.close').click(function () {
+    // console.log('遮罩层')
+    if ($('#zhezhao').hasClass('active')) {
+      $('#zhezhao').removeClass('active')
+      var v = document.getElementById('videoResumeC');
+      if (v && typeof v.pause === 'function') v.pause();
+    } else {
+      $('#zhezhao').addClass('active')
+    }
+  })
+
+  $('#minmenu').click(function () {
+    // console.log('遮罩层')
+    if ($('#minmenu').hasClass('active')) {
+      $('#minmenu').removeClass('active');
+      $('.menu_list').removeClass('active');
+
+    } else {
+      $('#minmenu').addClass('active')
+      $('.menu_list').addClass('active')
+    }
+  })
+
   // loadding
   document.onreadystatechange = function () {
     if (document.readyState == 'complete') {
       let opacity = $('.lodding-wrap').css('opacity');
       let timer = null;
-      timer = opacity&&setInterval(() => {
-        opacity-=0.1
+      timer = opacity && setInterval(() => {
+        opacity -= 0.1
         $('.lodding-wrap').css('opacity', opacity);
-        console.log(opacity)
+        // console.log(opacity)
         if (opacity <= 0) {
-          $('.lodding-wrap').css('display','none');
+          $('.lodding-wrap').css('display', 'none');
           clearInterval(timer)
         }
       }, 100);
-     
+
     }
   }
 
-  //锚点定位初始化
-  function bindEvenInit(){
-    $('.navbtn').bind("click touch",function () {
-      //scrollTop 滚动到  $(this).attr('href')锚点关联id所在位置
-      $('html,body').animate({scrollTop:($($(this).attr('href')).offset().top-100)},500)
+  // 锚点定位初始化
+  function bindEvenInit() {
+    $('.navbtn').bind("click touch", function () {
+      // scrollTop 滚动到 $(this).attr('href')锚点关联id所在位置
+      $('html,body').animate({ scrollTop: ($($(this).attr('href')).offset().top - 100) }, 500)
       return false
     })
   }
@@ -287,7 +359,7 @@ window.addEventListener("load", () => {
   const blackNav = document.querySelector(".navigation.active");
   if (blackNav) {
     const imgBlack = new Image();
-  imgBlack.src = "/img/back/black_background_progressive.jpg"; // 高清图
+    imgBlack.src = "/img/back/black_background_progressive.jpg"; // 高清图
     imgBlack.onload = () => {
       blackNav.style.backgroundImage = `url('${imgBlack.src}')`;
     };
@@ -297,7 +369,7 @@ window.addEventListener("load", () => {
   const whiteNav = document.querySelector(".navigation:not(.active)");
   if (whiteNav) {
     const imgWhite = new Image();
-  imgWhite.src = "/img/back/white_background_progressive.jpg"; // 高清图
+    imgWhite.src = "/img/back/white_background_progressive.jpg"; // 高清图
     imgWhite.onload = () => {
       whiteNav.style.backgroundImage = `url('${imgWhite.src}')`;
     };
@@ -324,7 +396,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // QQ号复制函数
 document.addEventListener('DOMContentLoaded', function() {
-  // attach to all elements that may (incorrectly) share this id
   var qqEls = document.querySelectorAll('#qq-copy');
   qqEls.forEach(function(qqBtn) {
     if (!qqBtn) return;
@@ -342,7 +413,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // kakao号复制函数
 document.addEventListener('DOMContentLoaded', function() {
-  // attach to all elements that may (incorrectly) share this id
   var kakaoEls = document.querySelectorAll('#kakao-copy');
   kakaoEls.forEach(function(kakaoBtn) {
     if (!kakaoBtn) return;
@@ -358,13 +428,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-
-
-
-
-
-
-
 // 完善的话题筛选和搜索功能
 function initTopicFilter() {
   // 话题筛选按钮点击事件
@@ -374,10 +437,10 @@ function initTopicFilter() {
       document.querySelectorAll('.topic-filter li').forEach(li => {
         li.classList.remove('active');
       });
-      
+
       // 添加active类到当前点击的项
       this.classList.add('active');
-      
+
       // 应用筛选
       applyFilters();
     });
@@ -388,12 +451,14 @@ function initTopicFilter() {
 function initSearch() {
   const searchButton = document.getElementById('search-button');
   const searchInput = document.getElementById('search-input');
-  
+
+  if (!searchButton || !searchInput) return;
+
   // 搜索按钮点击事件
   searchButton.addEventListener('click', function() {
     applyFilters();
   });
-  
+
   // 输入框实时搜索
   searchInput.addEventListener('input', function() {
     applyFilters();
@@ -402,21 +467,24 @@ function initSearch() {
 
 // 综合应用筛选条件
 function applyFilters() {
-  const keyword = document.getElementById('search-input').value.toLowerCase().trim();
-  const activeTopic = document.querySelector('.topic-filter li.active').getAttribute('data-topic');
+  const keyword = (document.getElementById('search-input') && document.getElementById('search-input').value || '').toLowerCase().trim();
+  const activeLi = document.querySelector('.topic-filter li.active');
+  const activeTopic = activeLi ? activeLi.getAttribute('data-topic') : 'all';
   const articles = document.querySelectorAll('.li3-box');
-  
+
   articles.forEach(article => {
-    const title = article.querySelector('a').textContent.toLowerCase();
-    const content = article.querySelector('p').textContent.toLowerCase();
+    const titleEl = article.querySelector('a');
+    const pEl = article.querySelector('p');
+    const title = titleEl ? titleEl.textContent.toLowerCase() : '';
+    const content = pEl ? pEl.textContent.toLowerCase() : '';
     const topics = article.getAttribute('data-topics');
-    
+
     // 检查话题筛选条件
     const matchesTopic = activeTopic === 'all' || (topics && topics.includes(activeTopic));
-    
+
     // 检查搜索条件
     const matchesSearch = !keyword || title.includes(keyword) || content.includes(keyword);
-    
+
     // 同时满足话题筛选和搜索条件才显示
     if (matchesTopic && matchesSearch) {
       article.style.display = 'block';
@@ -428,10 +496,10 @@ function applyFilters() {
 
 // 在DOM加载完成后初始化
 document.addEventListener('DOMContentLoaded', function() {
-  initTopicFilter();
-  initSearch();
-  // 填充文章列表中的话题标签（从每个 .li3-box 的 data-topics 读取）
   try {
+    initTopicFilter();
+    initSearch();
+    // 填充文章列表中的话题标签（从每个 .li3-box 的 data-topics 读取）
     initArticleTopics();
   } catch (e) {
     // ignore

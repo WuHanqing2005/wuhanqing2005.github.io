@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/blog.css">
   <script src="../js/jq.js"></script>
+  
+  <!-- 评论区分类标签 -->
+  <meta property="og:title" content="wuhanqing2005.github.io/blog" />
 </head>
 
 
@@ -423,8 +426,47 @@
           </div>
 
           <!-- 文章列表 - 在此处添加文章 -->
+
+          <!-- 分贝（dB）体系深度解析：理论、应用与工程实践 -->
+          <div class="carbox li3-box" data-topics="电路学习">
+            <a href="./blogs/In-Depth Analysis of the Decibel System.html">分贝（dB）体系深度解析：理论、应用与工程实践</a>
+            <p>本篇文章系统解析分贝（dB）体系，从对数基础、功率与电压关系，
+              到声学中的 dB SPL、数字音频中的 dBFS、LUFS，
+              再到电路与射频工程中的 dBm、dBV、dBu 与天线增益 dBi/dBd，
+              层层递进。文章不仅推导公式，
+              更结合实际工程应用、例题与对照表帮助读者真正理解 dB 的物理意义与使用场景，
+              是一份全面、专业、可实践的分贝体系深度指南。</p>
+            <div class="address-wrap">
+              <div class="address-left">
+                <span class="zd">置顶</span>
+                <span>Daniel_清寒</span>
+                <!-- article-topic: will be filled by JS from the parent .li3-box[data-topics] -->
+                <span class="article-topic"></span>
+              </div>
+              <div class="address-right">
+                <span>
+                  <svg t="1663167559418" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="8282" width="20" height="20">
+                    <path
+                      d="M857.28 344.992h-264.832c12.576-44.256 18.944-83.584 18.944-118.208 0-78.56-71.808-153.792-140.544-143.808-60.608 8.8-89.536 59.904-89.536 125.536v59.296c0 76.064-58.208 140.928-132.224 148.064l-117.728-0.192A67.36 67.36 0 0 0 64 483.04V872c0 37.216 30.144 67.36 67.36 67.36h652.192a102.72 102.72 0 0 0 100.928-83.584l73.728-388.96a102.72 102.72 0 0 0-100.928-121.824zM128 872V483.04c0-1.856 1.504-3.36 3.36-3.36H208v395.68H131.36A3.36 3.36 0 0 1 128 872z m767.328-417.088l-73.728 388.96a38.72 38.72 0 0 1-38.048 31.488H272V476.864a213.312 213.312 0 0 0 173.312-209.088V208.512c0-37.568 12.064-58.912 34.72-62.176 27.04-3.936 67.36 38.336 67.36 80.48 0 37.312-9.504 84-28.864 139.712a32 32 0 0 0 30.24 42.496h308.512a38.72 38.72 0 0 1 38.048 45.888z"
+                      p-id="8283"></path>
+                  </svg>
+                  1
+                </span>
+
+                <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                  xmlns="http://www.w3.org/2000/svg" p-id="1979" width="20" height="20">
+                  <path
+                    d="M192 512a320 320 0 1 1 640 0 320 320 0 0 1-640 0zM512 128a384 384 0 1 0 0 768 384 384 0 0 0 0-768z m21.333333 224a32 32 0 0 0-64 0V554.666667h202.666667a32 32 0 0 0 0-64H533.333333V352z"
+                    fill="#222222" p-id="1980"></path>
+                </svg>
+                <span>2025-11-15 16:35:00</span>
+              </div>
+            </div>
+          </div>
+
           <!-- 电阻、电容、电感与阻抗 -->
-          <div class="carbox li3-box" data-topics="电路学习, 数学学习">
+          <div class="carbox li3-box" data-topics="电路学习">
             <a href="./blogs/Resistor, Capacitor, Inductor&Impedance.html">电阻、电容、电感与阻抗</a>
             <p>本文系统阐述了电阻、电容与电感在交流电路中的阻抗特性及其物理意义。
               通过相量法与频率域分析，分别推导了三种元件的阻抗公式，
@@ -461,10 +503,25 @@
             </div>
           </div>
 
-          
-
-          
           <!-- 更多文章请添加在此处 -->
+
+          <!-- Giscus 评论区 -->
+          <script src="https://giscus.app/client.js"
+            data-repo="WuHanqing2005/my-website-discussions"
+            data-repo-id="R_kgDOQWFJIw"
+            data-category="Announcements"
+            data-category-id="DIC_kwDOQWFJI84Cxz_f"
+            data-mapping="og:title"
+            data-strict="1"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="top"
+            data-theme="dark"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async>
+          </script>
         </div>
         <div class="borderbotm"></div>
 
@@ -504,7 +561,6 @@
             <p>
                 本站访客数 <span id="busuanzi_value_site_uv"></span> 人次
                 <span style="margin: 0 10px;">|</span>
-
                 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
             </p>
         </footer>

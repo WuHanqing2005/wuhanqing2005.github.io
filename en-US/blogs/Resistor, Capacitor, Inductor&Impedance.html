@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="../../css/base.css">
   <link rel="stylesheet" href="../../css/blog.css">
   <script src="../../js/jq.js"></script>
+  
+  <!-- 评论区分类标签 -->
+  <meta property="og:title" content="Resistor, Capacitor, Inductor&Impedance" />
 </head>
 
 
@@ -57,7 +60,7 @@
               <!-- 语言选择器 -->
               <li class="language-selector">
                 <div style="display:inline-flex;align-items:center;gap:6px;">
-                  <img id="lang-flag" src="/img/flag/us.svg" alt="flag" style="width:24px;height:auto;object-fit:contain;display:inline-block;" />
+                  <img id="lang-flag" src="/img/flag/cn.svg" alt="flag" style="width:24px;height:auto;object-fit:contain;display:inline-block;" />
                   <select id="language-select" aria-label="Language select">
                     <option value="cn">中文</option>
                     <option value="en">English</option>
@@ -184,7 +187,24 @@
               <h2 class="md-loading">正在加载文章…</h2>
             </div>
           </div>
-        </div>
+
+          <!-- Giscus 评论区 -->
+          <script src="https://giscus.app/client.js"
+            data-repo="WuHanqing2005/my-website-discussions"
+            data-repo-id="R_kgDOQWFJIw"
+            data-category="Announcements"
+            data-category-id="DIC_kwDOQWFJI84Cxz_f"
+            data-mapping="og:title"
+            data-strict="1"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="top"
+            data-theme="dark"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async>
+          </script>
 
         <!-- Markdown renderer dependencies and externalized styles/scripts -->
         <link rel="stylesheet" href="/css/prism.css">
@@ -231,9 +251,9 @@
         <!-- 不蒜子网站访问量统计 -->
         <footer style="text-align: center; padding: 20px; color: #888; width: 100%;">
             <p>
-                Total Visitors: <span id="busuanzi_value_site_uv"></span>
+                本站访客数 <span id="busuanzi_value_site_uv"></span> 人次
                 <span style="margin: 0 10px;">|</span>
-                Total Views: <span id="busuanzi_value_site_pv"></span>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
             </p>
         </footer>
         

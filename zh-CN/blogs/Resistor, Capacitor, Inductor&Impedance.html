@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="../../css/base.css">
   <link rel="stylesheet" href="../../css/blog.css">
   <script src="../../js/jq.js"></script>
+  
+  <!-- 评论区分类标签 -->
+  <meta property="og:title" content="Resistor, Capacitor, Inductor&Impedance" />
 </head>
 
 
@@ -184,7 +187,24 @@
               <h2 class="md-loading">正在加载文章…</h2>
             </div>
           </div>
-        </div>
+
+          <!-- Giscus 评论区 -->
+          <script src="https://giscus.app/client.js"
+            data-repo="WuHanqing2005/my-website-discussions"
+            data-repo-id="R_kgDOQWFJIw"
+            data-category="Announcements"
+            data-category-id="DIC_kwDOQWFJI84Cxz_f"
+            data-mapping="og:title"
+            data-strict="1"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="top"
+            data-theme="dark"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async>
+          </script>
 
         <!-- Markdown renderer dependencies and externalized styles/scripts -->
         <link rel="stylesheet" href="/css/prism.css">

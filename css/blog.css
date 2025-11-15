@@ -126,6 +126,7 @@
   justify-content: space-between;
   color: #7B7B7D;
   font-size: 10px;
+  flex-wrap: wrap;
 }
 
 .address-wrap svg path{
@@ -141,9 +142,6 @@
 
 .address-left span.zd{
   color: var(--mainColor);
-}
-.address-wrap .address-right{
-
 }
 
 .time-tags-wrap{
@@ -182,6 +180,24 @@
   .time-tags-wrap span{
     display: block;
     margin-bottom: 8px;
+  }
+
+  /* Make address-wrap stack on narrow screens: left line then right line */
+  .address-wrap {
+    flex-wrap: wrap;
+  }
+  .address-wrap .address-left,
+  .address-wrap .address-right {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .address-wrap .address-left {
+    justify-content: flex-start;
+  }
+  .address-wrap .address-right {
+    justify-content: flex-end;
+    margin-top: 6px;
   }
 }
 
