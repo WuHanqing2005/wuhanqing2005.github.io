@@ -1,5 +1,10 @@
 # 电阻、电容、电感与阻抗
 
+<div style="display:flex; justify-content:space-between; margin:12px 0 20px 0; font-size:14px; color:var(--headerFont);">
+  <span style="font-weight:600;">作者：吴瀚庆</span>
+  <span style="font-weight:600;">时间: 2025-11-02 01:18:00</span>
+</div>
+
 本文系统阐述了电阻、电容与电感在交流电路中的阻抗特性及其物理意义。通过相量法与频率域分析，分别推导了三种元件的阻抗公式，揭示了电压、电流之间的相位关系与能量变化规律。文中还对比总结了电阻、容抗与感抗的数学表达式及频率特性，帮助读者直观理解“通交隔直”“通直阻交”等经典规律，为后续的滤波器、电路谐振与交流分析等应用奠定理论基础。
 
 ## 1. 阻抗的基本概念
