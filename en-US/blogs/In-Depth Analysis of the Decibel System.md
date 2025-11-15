@@ -581,4 +581,4 @@ $$
 
 这份文档旨在成为电子工程、音频工程和通信工程领域学习者关于分贝体系的学习笔记与复习指南。它从最基础的数学概念开始，逐步深入到各个应用场景，并辅以大量的例题和速查表，力求使零基础的学习者也能完全掌握。
 
-下载原文: <a href="https://wuhanqing2005.github.io/zh-CN/blogs/In-Depth%20Analysis%20of%20the%20Decibel%20System.md">In-Depth Analysis of the Decibel System.md</a>
+下载原文: <a href="https://wuhanqing2005.github.io/zh-CN/blogs/In-Depth Analysis of the Decibel System.md">In-Depth Analysis of the Decibel System.md</a>

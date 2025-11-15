@@ -156,3 +156,5 @@ $$\boxed{Z_L = j\omega L}$$
 - 电阻用于**控制增益**和**匹配阻抗**
 
 这些特性使得我们能够设计出满足特定频率响应要求的各种滤波器电路。
+
+下载原文: <a href="https://wuhanqing2005.github.io/zh-CN/blogs/Resistor, Capacitor, Inductor&Impedance.md">Resistor, Capacitor, Inductor&Impedance.md</a>
