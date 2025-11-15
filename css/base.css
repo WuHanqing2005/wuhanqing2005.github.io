@@ -1437,3 +1437,11 @@ p, a, span {
 @media screen and (max-width: 480px) {
   .buttom.navbtn > span, a.buttom.navbtn > span { font-size: 80%; }
 }
+
+
+/* 修复移动端横向滚动（overflow-x）问题，兼容你现有布局与主题切换逻辑。*/
+/* 禁止 body 水平滚动（如果其他修复生效则可删除） */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden; /* 若站点确实包含需要横向滚动的特殊组件，请删除此项并解决具体组件 */
+}
