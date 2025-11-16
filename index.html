@@ -1,35 +1,33 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Redirecting…</title>
-    <!--
-      根目录的 index.html: 将站点默认页指向 zh-CN/index.html
-      实现: meta-refresh + JS 重定向 + noscript 链接回退
-      优点: 兼容 GitHub Pages 等静态主机，不需要服务器配置
-    -->
-    <!-- 快速的客户端重定向（1 秒） -->
-    <meta http-equiv="refresh" content="1; url=/zh-CN/">
-    <script>
-      // 尝试立即使用 replace（不会在历史中留下记录）
-      (function(){
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Redirecting…</title>
+
+  <!-- 立即客户端重定向为 zh-CN（JS 优先，meta 兜底） -->
+  <meta http-equiv="refresh" content="0; url=/zh-CN/">
+
+  <script>
+    // 尽量立即替换，不在浏览历史留下记录
+    (function () {
+      try {
         var target = '/zh-CN/';
-        // 如果当前路径已经在 zh-CN 下，则不重定向（避免循环）
-        if (location.pathname.replace(/\/+$/,'') === target.replace(/\/+$/,'')) return;
-        try {
-          location.replace(target);
-        } catch (e) {
-          // 退回到跳转链接（meta refresh 会生效）
-        }
-      })();
-    </script>
-    <link rel="canonical" href="/zh-CN/">
-  </head>
-  <body>
-    <p>正在跳转到站点默认语言页面: <a href="/zh-CN/">/zh-CN/</a></p>
-    <noscript>
-      <p>您的浏览器未启用 JavaScript。请点击链接进入: <a href="/zh-CN/">/zh-CN/</a></p>
-    </noscript>
-  </body>
+        // 如果已经在目标路径则不做任何操作
+        if ((location.pathname || '').replace(/\/+$/, '') === target.replace(/\/+$/, '')) return;
+        location.replace(target);
+      } catch (e) {
+        // 若替换失败，meta-refresh 会兜底
+      }
+    })();
+  </script>
+
+  <link rel="canonical" href="/zh-CN/">
+</head>
+<body>
+  <p>正在跳转到站点默认语言页面：<a href="/zh-CN/">/zh-CN/</a></p>
+  <noscript>
+    <p>您的浏览器未启用 JavaScript。请点击链接进入：<a href="/zh-CN/">/zh-CN/</a></p>
+  </noscript>
+</body>
 </html>
