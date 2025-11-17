@@ -15,7 +15,7 @@
   transition: color .25s ease, background .25s ease;
 }
 
-#md-embed p { text-indent: 2em; margin: 0 0 1em; color: var(--headerFont); }
+#md-embed p { text-indent: 0; margin: 0 0 1em; color: var(--headerFont); }
 #md-embed h1, #md-embed h2, #md-embed h3 {
   font-family: "Arial", "Microsoft YaHei", "Noto Sans", sans-serif;
   font-weight: 600;
@@ -106,8 +106,8 @@
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow-x: disabled;
+  overflow-y: disabled;
   -webkit-overflow-scrolling: touch;
   white-space: nowrap;
 }

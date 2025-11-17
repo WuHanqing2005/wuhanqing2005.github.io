@@ -1,9 +1,8 @@
 # 电阻、电容、电感与阻抗
 
-<div style="display:flex; justify-content:space-between; margin:12px 0 20px 0; font-size:14px; color:var(--headerFont);">
-  <span style="font-weight:600;">作者：吴瀚庆</span>
+<span style="font-weight:600;">作者: 吴瀚庆</span><br>
   <span style="font-weight:600;">时间: 2025-11-02 01:18:00</span>
-</div>
+
 
 本文系统阐述了电阻、电容与电感在交流电路中的阻抗特性及其物理意义。通过相量法与频率域分析，分别推导了三种元件的阻抗公式，揭示了电压、电流之间的相位关系与能量变化规律。文中还对比总结了电阻、容抗与感抗的数学表达式及频率特性，帮助读者直观理解“通交隔直”“通直阻交”等经典规律，为后续的滤波器、电路谐振与交流分析等应用奠定理论基础。
 
@@ -70,11 +69,25 @@ $$i_C(t) = C \frac{dv_C(t)}{dt}$$
 $$v_C(t) = V_m \sin(\omega t)$$
 
 流过电容的电流为：
-$$i_C(t) = C \frac{d}{dt} \left[ V_m \sin(\omega t) \right] = C \cdot V_m \cdot \omega \cos(\omega t) = \omega C V_m \sin(\omega t + 90^\circ)$$
+$$
+\begin{aligned}
+i_C(t)
+&= C \cdot \frac{d}{dt}\left[V_m \sin(\omega t)\right] \\[10pt]
+&= C \cdot V_m \omega \cos(\omega t) \\[10pt]
+&= \omega C \cdot V_m \cdot \sin(\omega t + 90^\circ)\\[10pt]
+\end{aligned}
+$$
 
 使用相量法推导，设电压相量为 $\mathbf{V}_C$：
 $$v_C(t) = \mathbf{V}_C e^{j\omega t}$$
-$$i_C(t) = C \frac{d}{dt} (\mathbf{V}_C e^{j\omega t}) = C \cdot \mathbf{V}_C \cdot j\omega e^{j\omega t} = (j\omega C) \mathbf{V}_C e^{j\omega t}$$
+$$
+\begin{aligned}
+i_C(t) 
+&= C \frac{d}{dt} (\mathbf{V}_C e^{j\omega t}) \\[10pt]
+&= C \cdot \mathbf{V}_C \cdot j\omega e^{j\omega t} \\[10pt]
+&= (j\omega C) \mathbf{V}_C e^{j\omega t}\\[10pt]
+\end{aligned}
+$$
 
 电流相量为：
 $$\mathbf{I} = j\omega C \mathbf{V}_C$$
