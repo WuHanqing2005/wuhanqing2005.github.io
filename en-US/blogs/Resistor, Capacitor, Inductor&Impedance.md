@@ -170,5 +170,5 @@ $$\boxed{Z_L = j\omega L}$$
 <a href="https://wuhanqing.cn">wuhanqing.cn</a><br><br>
 下载原文Markdown: <a href="https://wuhanqing2005.github.io/zh-CN/blogs/Resistor, Capacitor, Inductor&Impedance.md">Resistor, Capacitor, Inductor&Impedance.md</a><br>
 下载原文PDF: <a href="https://wuhanqing2005.github.io/zh-CN/blogs/Resistor, Capacitor, Inductor&Impedance.pdf">Resistor, Capacitor, Inductor&Impedance.pdf</a><br><br>
-欢迎关注我的微信公众号: @<a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzE5OTA0Nzg0OQ==#" style="text-decoration: underline;">Daniel的多线程日记</a>
+欢迎关注我的微信公众号: @<span style="text-decoration: underline;">Daniel的多线程日记</span>
 </div>
