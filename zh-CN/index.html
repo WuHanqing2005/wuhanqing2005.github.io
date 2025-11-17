@@ -294,7 +294,7 @@
           </div>
         </div>
 
-        <!-- 我的故事 -->
+        <!-- 每日一句 -->
         <div class="content-li li2">
           <h3>
             <span>每日一句</span>
@@ -302,34 +302,12 @@
             <span>01</span>
           </h3>
 
+          <!-- daily-quote-cn -->
           <div class="carbox li2-box">
-            <blockquote>每日一句</blockquote>
-            <script>
-              async function loadDailyQuote() {
-                  try {
-                      const res = await fetch("https://api.quotable.io/random");
-                      const data = await res.json();
-
-                      const blockquote = document.querySelector(".carbox.li2-box blockquote");
-
-                      const author = data.author ? data.author : "Anonymous";
-
-                      // 使用 HTML（允许右对齐作者）
-                      blockquote.innerHTML = `
-                          ${data.content}
-                          <span style="display:block; text-align:right; margin-top:8px;">—— ${author}</span><br>
-                      `;
-
-                  } catch (e) {
-                      console.error("每日一句加载失败：", e);
-                  }
-              }
-
-              loadDailyQuote();
-            </script>
+            <blockquote></blockquote>
           </div>
+          <script src="../js/daily-quote/daily-quote-zh.js"></script>
         </div>
-
         
         <!-- 视频简历 自我介绍 -->
         <div class="content-li li3">

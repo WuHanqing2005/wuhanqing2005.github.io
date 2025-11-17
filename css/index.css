@@ -82,7 +82,7 @@
   line-height: 55px;
   content: '"';
   position: absolute;
-  bottom: -40px;
+  bottom: -50px; /* 调整右下引号的位置 */
   right: -25px;
   font-size: 54px;
 }
@@ -101,7 +101,7 @@
 
 .li2-box blockquote {
   position: relative;
-  padding: 0;
+  padding: 10px 10px 15px 10px;
   margin: 0;
   display: block;
   color: var(--headerFont);
