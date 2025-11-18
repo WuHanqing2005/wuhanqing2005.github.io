@@ -1,7 +1,9 @@
 # 电阻、电容、电感与阻抗
 
-<span style="font-weight:600;">作者: 吴瀚庆</span><br>
-  <span style="font-weight:600;">时间: 2025-11-02 01:18:00</span>
+<div style="display:flex; justify-content:space-between; font-weight:600;">
+  <span>作者: Daniel_清寒</span>
+  <span>时间: 2025-11-18</span>
+</div>
 
 ---
 
@@ -20,7 +22,10 @@
 ### 1.2 数学表示
 
 阻抗 $Z$ 是一个复数：
-$$Z = R + jX$$
+
+$$
+Z = R + jX
+$$
 
 其中：
 - $R$ 是**电阻分量**（实部），代表能量的耗散
@@ -30,8 +35,14 @@ $$Z = R + jX$$
 ### 1.3 阻抗的模和相位
 
 阻抗的大小（模）和相位角为：
-$$|Z| = \sqrt{R^2 + X^2}$$
-$$\theta = \arctan\left(\frac{X}{R}\right)$$
+
+$$
+|Z| = \sqrt{R^2 + X^2}
+$$
+
+$$
+\theta = \arctan\left(\frac{X}{R}\right)
+$$
 
 ---
 
@@ -40,26 +51,44 @@ $$\theta = \arctan\left(\frac{X}{R}\right)$$
 ### 2.1 时域特性
 
 电阻的电压和电流在任意时刻都遵循欧姆定律：
-$$v_R(t) = R \cdot i_R(t)$$
+
+$$
+v_R(t) = R \cdot i_R(t)
+$$
 
 ### 2.2 阻抗推导
 
 假设通过电阻的电流为正弦波：
-$$i_R(t) = I_m \sin(\omega t)$$
+
+$$
+i_R(t) = I_m \sin(\omega t)
+$$
 
 根据欧姆定律，电阻两端电压为：
-$$v_R(t) = R \cdot i_R(t) = R \cdot I_m \sin(\omega t)$$
+
+$$
+v_R(t) = R \cdot i_R(t) = R \cdot I_m \sin(\omega t)
+$$
 
 使用相量法分析，电流相量为 $\mathbf{I}$，电压相量为 $\mathbf{V}_R$：
-$$\mathbf{V}_R = R \cdot \mathbf{I}$$
+
+$$
+\mathbf{V}_R = R \cdot \mathbf{I}
+$$
 
 因此，电阻的阻抗为：
-$$Z_R = \frac{\mathbf{V}_R}{\mathbf{I}} = R$$
+
+$$
+Z_R = \frac{\mathbf{V}_R}{\mathbf{I}} = R
+$$
 
 ### 2.3 结论
 
 **电阻的阻抗是一个纯实数：**
-$$\boxed{Z_R = R}$$
+
+$$
+\boxed{Z_R = R}
+$$
 
 **特性：**
 - 只有电阻分量，没有电抗分量
@@ -73,15 +102,25 @@ $$\boxed{Z_R = R}$$
 ### 3.1 时域特性
 
 电容器的基本特性方程为：
-$$v_C(t) = \frac{1}{C} q(t) = \frac{1}{C} \int i_C(t)  dt$$
-$$i_C(t) = C \frac{dv_C(t)}{dt}$$
+
+$$
+v_C(t) = \frac{1}{C} q(t) = \frac{1}{C} \int i_C(t)  dt
+$$
+
+$$
+i_C(t) = C \frac{dv_C(t)}{dt}
+$$
 
 ### 3.2 阻抗推导
 
 假设电容器两端电压为正弦波：
-$$v_C(t) = V_m \sin(\omega t)$$
+
+$$
+v_C(t) = V_m \sin(\omega t)
+$$
 
 流过电容的电流为：
+
 $$
 \begin{aligned}
 i_C(t)
@@ -92,7 +131,11 @@ i_C(t)
 $$
 
 使用相量法推导，设电压相量为 $\mathbf{V}_C$：
-$$v_C(t) = \mathbf{V}_C e^{j\omega t}$$
+
+$$
+v_C(t) = \mathbf{V}_C e^{j\omega t}
+$$
+
 $$
 \begin{aligned}
 i_C(t) 
@@ -103,18 +146,30 @@ i_C(t)
 $$
 
 电流相量为：
-$$\mathbf{I} = j\omega C \mathbf{V}_C$$
+
+$$
+\mathbf{I} = j\omega C \mathbf{V}_C
+$$
 
 因此，电容的阻抗为：
-$$Z_C = \frac{\mathbf{V}_C}{\mathbf{I}} = \frac{\mathbf{V}_C}{j\omega C \mathbf{V}_C} = \frac{1}{j\omega C}$$
+
+$$
+Z_C = \frac{\mathbf{V}_C}{\mathbf{I}} = \frac{\mathbf{V}_C}{j\omega C \mathbf{V}_C} = \frac{1}{j\omega C}
+$$
 
 利用 $\frac{1}{j} = -j$，可得：
-$$Z_C = -j \frac{1}{\omega C}$$
+
+$$
+Z_C = -j \frac{1}{\omega C}
+$$
 
 ### 3.3 结论
 
 **电容的阻抗是一个纯虚数：**
-$$\boxed{Z_C = \frac{1}{j\omega C} = -j \frac{1}{\omega C}}$$
+
+$$
+\boxed{Z_C = \frac{1}{j\omega C} = -j \frac{1}{\omega C}}
+$$
 
 **特性：**
 - **容抗**大小为 $X_C = \frac{1}{\omega C}$
@@ -131,14 +186,21 @@ $$\boxed{Z_C = \frac{1}{j\omega C} = -j \frac{1}{\omega C}}$$
 ### 4.1 时域特性
 
 电感器的基本特性方程为：
-$$v_L(t) = L \frac{di_L(t)}{dt}$$
+
+$$
+v_L(t) = L \frac{di_L(t)}{dt}
+$$
 
 ### 4.2 阻抗推导
 
 假设流过电感的电流为正弦波：
-$$i_L(t) = I_m \sin(\omega t)$$
+
+$$
+i_L(t) = I_m \sin(\omega t)
+$$
 
 电感两端电压为：
+
 $$
 \begin{aligned}
 v_L(t) 
@@ -149,22 +211,39 @@ v_L(t)
 $$
 
 使用相量法推导，设电流相量为 $\mathbf{I}$：
-$$i_L(t) = \mathbf{I} e^{j\omega t}$$
 
-| $$v_L(t) = L \frac{d}{dt} (\mathbf{I} e^{j\omega t}) = L \cdot \mathbf{I} \cdot j\omega e^{j\omega t} = (j\omega L) \mathbf{I} e^{j\omega t}$$ |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- |
+$$
+i_L(t) = \mathbf{I} e^{j\omega t}
+$$
 
+$$
+\begin{aligned}
+v_L(t) 
+&= L \frac{d}{dt} (\mathbf{I} e^{j\omega t}) \\[10pt]
+&= L \cdot \mathbf{I} \cdot j\omega e^{j\omega t} \\[10pt]
+&= (j\omega L) \mathbf{I} e^{j\omega t} \\[10pt]
+\end{aligned}
+$$
 
 电压相量为：
-$$\mathbf{V}_L = j\omega L \mathbf{I}$$
+
+$$
+\mathbf{V}_L = j\omega L \mathbf{I}
+$$
 
 因此，电感的阻抗为：
-$$Z_L = \frac{\mathbf{V}_L}{\mathbf{I}} = \frac{j\omega L \mathbf{I}}{\mathbf{I}} = j\omega L$$
+
+$$
+Z_L = \frac{\mathbf{V}_L}{\mathbf{I}} = \frac{j\omega L \mathbf{I}}{\mathbf{I}} = j\omega L
+$$
 
 ### 4.3 结论
 
 **电感的阻抗是一个纯虚数：**
-$$\boxed{Z_L = j\omega L}$$
+
+$$
+\boxed{Z_L = j\omega L}
+$$
 
 **特性：**
 - **感抗**大小为 $X_L = \omega L$
