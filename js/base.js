@@ -465,6 +465,80 @@ function initSearch() {
   });
 }
 
+// 更完善且独立的 blog 搜索逻辑
+function normalizeTextForSearch(str) {
+  if (!str) return '';
+  // 转小写
+  let s = String(str).toLowerCase();
+  // 保留中日韩汉字、拉丁字母和数字，其他字符替换为空格（去除标点）
+  s = s.replace(/[^0-9a-zA-Z\u4e00-\u9fff\u3040-\u30ff\uac00-\ud7a3\s]/g, ' ');
+  // 合并连续空白
+  s = s.replace(/\s+/g, ' ').trim();
+  return s;
+}
+
+function applyBlogFilters() {
+  const raw = (document.getElementById('search-input') && document.getElementById('search-input').value) || '';
+  const keyword = normalizeTextForSearch(raw);
+
+  const activeLi = document.querySelector('.topic-filter li.active');
+  const activeTopic = activeLi ? activeLi.getAttribute('data-topic') : 'all';
+  const articles = document.querySelectorAll('.li3-box');
+
+  articles.forEach(article => {
+    // 收集可能包含标题/摘要的所有文字节点
+    let parts = [];
+    const h3 = article.querySelector('h3');
+    const a = article.querySelector('a');
+    const p = article.querySelector('p');
+    const topicAttr = article.getAttribute('data-topics') || '';
+    const articleTopicSpan = article.querySelector('.article-topic');
+
+    if (h3) parts.push(h3.textContent);
+    if (a) parts.push(a.textContent);
+    if (p) parts.push(p.textContent);
+    if (articleTopicSpan) parts.push(articleTopicSpan.textContent);
+    if (topicAttr) parts.push(topicAttr);
+
+    const hay = normalizeTextForSearch(parts.join(' '));
+
+    // 话题匹配（保持与原逻辑一致）
+    const topics = article.getAttribute('data-topics');
+    const matchesTopic = activeTopic === 'all' || (topics && topics.includes(activeTopic));
+
+    // 搜索匹配：如果关键字为空则通过；否则判断规范化后的文本是否包含关键字
+    const matchesSearch = !keyword || hay.indexOf(keyword) !== -1;
+
+    if (matchesTopic && matchesSearch) {
+      article.style.display = 'block';
+    } else {
+      article.style.display = 'none';
+    }
+  });
+}
+
+function initBlogSearch() {
+  const searchButton = document.getElementById('search-button');
+  const searchInput = document.getElementById('search-input');
+  if (!searchButton || !searchInput) return;
+
+  // 点击与输入均触发 blog 专用过滤
+  searchButton.addEventListener('click', function() {
+    applyBlogFilters();
+  });
+  searchInput.addEventListener('input', function() {
+    applyBlogFilters();
+  });
+
+  // 也在话题切换时调用，保持同步
+  document.querySelectorAll('.topic-filter li').forEach(item => {
+    item.addEventListener('click', function() {
+      // slight delay to allow active class to update
+      setTimeout(applyBlogFilters, 10);
+    });
+  });
+}
+
 // 综合应用筛选条件
 function applyFilters() {
   const keyword = (document.getElementById('search-input') && document.getElementById('search-input').value || '').toLowerCase().trim();
@@ -498,7 +572,13 @@ function applyFilters() {
 document.addEventListener('DOMContentLoaded', function() {
   try {
     initTopicFilter();
-    initSearch();
+    // 如果页面是 blog（存在 .content-li.li3 或 topic-filter），使用更完善的 blog 搜索逻辑
+    const isBlogLike = !!document.querySelector('.content-li.li3') || !!document.querySelector('.topic-filter');
+    if (isBlogLike) {
+      initBlogSearch();
+    } else {
+      initSearch();
+    }
     // 填充文章列表中的话题标签（从每个 .li3-box 的 data-topics 读取）
     initArticleTopics();
   } catch (e) {
