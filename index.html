@@ -5,29 +5,121 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Redirecting…</title>
 
-  <!-- 立即客户端重定向为 zh-CN（JS 优先，meta 兜底） -->
-  <meta http-equiv="refresh" content="0; url=/zh-CN/">
-
   <script>
-    // 尽量立即替换，不在浏览历史留下记录
+    /**
+     * ================================
+     *  模拟 IP（方便你调试）
+     * ================================
+     * 留空 "" 则使用真实访问者 IP
+     * 推荐的测试 IP（你可随便切换）：
+     *
+     * 中国大陆:      47.100.108.36
+     * 香港:          203.198.23.69
+     * 澳门:          202.175.3.8
+     * 台湾:          210.61.47.208
+     * 韩国:          180.71.27.250
+     * 朝鲜（平壤）:  175.45.176.1
+     *
+     * 日本（东京）:  163.44.251.129
+     *
+     * 德国:          80.187.110.50
+     * 奥地利:        85.124.0.1
+     * 瑞士:          138.188.32.1
+     * 列支敦士登:    80.65.48.1
+     * 卢森堡:        194.154.200.1
+     *
+     * 美国:          8.8.8.8
+     * 英国:          51.140.34.2
+     * 法国:          51.159.24.25
+     */
+    window.simulateIP = "";  // ← 调试时填入上方任意 IP, 留空则使用真实访问者 IP
+
     (function () {
-      try {
-        var target = '/zh-CN/';
-        // 如果已经在目标路径则不做任何操作
-        if ((location.pathname || '').replace(/\/+$/, '') === target.replace(/\/+$/, '')) return;
-        location.replace(target);
-      } catch (e) {
-        // 若替换失败，meta-refresh 会兜底
+      // 语言映射规则
+      function mapCountryToLang(cc, country) {
+        if (!cc) return "en-US";
+        cc = cc.toUpperCase();
+        country = (country || "").toLowerCase();
+
+        // ===== 中文地区 =====
+        if (
+          cc === "CN" || cc === "HK" || cc === "MO" || cc === "TW" ||
+          country.includes("china") ||
+          country.includes("hong") ||
+          country.includes("taiwan") ||
+          country.includes("macau")
+        ) {
+          return "zh-CN";
+        }
+
+        // ===== 韩语地区 =====
+        if (cc === "KR" || cc === "KP" || country.includes("korea")) {
+          return "ko-KR";
+        }
+
+        // ===== 日本 =====
+        if (cc === "JP" || country.includes("japan")) {
+          return "ja-JP";
+        }
+
+        // ===== 德语地区 =====
+        const germanCC = ["DE", "AT", "CH", "LI", "LU"];  
+        if (germanCC.includes(cc)) {
+          return "de-DE";
+        }
+
+        // 其他全部 → 英文
+        return "en-US";
       }
+
+      // 目标重定向函数
+      function go(lang) {
+        var target = "/" + lang + "/";
+        if (location.pathname.replace(/\/+$/, "") === target.replace(/\/+$/, "")) return;
+        location.replace(target);
+      }
+
+      // 构造 IP API 地址
+      var api = window.simulateIP && window.simulateIP.trim()
+        ? "https://api.ip.sb/geoip/" + encodeURIComponent(window.simulateIP.trim())
+        : "https://api.ip.sb/geoip";
+
+      // 超时（2 秒）
+      var controller = new AbortController();
+      var t = setTimeout(() => controller.abort(), 2000);
+
+      fetch(api, { signal: controller.signal })
+        .then(r => {
+          clearTimeout(t);
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.json();
+        })
+        .then(d => {
+          try {
+            var cc = d.country_code || "";
+            var country = d.country || "";
+            var lang = mapCountryToLang(cc, country);
+            go(lang);
+          } catch (err) {
+            console.warn("解析国家失败，跳到英文", err);
+            go("en-US");
+          }
+        })
+        .catch(err => {
+          console.warn("IP 请求失败，跳到英文", err);
+          go("en-US");
+        });
+
     })();
   </script>
 
-  <link rel="canonical" href="/zh-CN/">
+  <style>
+    body { font-family: sans-serif; padding: 40px; }
+  </style>
 </head>
+
 <body>
-  <p>正在跳转到站点默认语言页面：<a href="/zh-CN/">/zh-CN/</a></p>
-  <noscript>
-    <p>您的浏览器未启用 JavaScript。请点击链接进入：<a href="/zh-CN/">/zh-CN/</a></p>
-  </noscript>
+  <h2>正在根据您的地区选择语言版本…</h2>
+  <p>如果未自动跳转，请访问：<a href="/en-US/">/en-US/</a></p>
 </body>
 </html>
