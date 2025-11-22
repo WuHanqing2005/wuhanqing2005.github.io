@@ -1,4 +1,23 @@
 (function () {
+  // Try to request 2D contexts with willReadFrequently by default to avoid
+  // repeated getImageData readback warnings in some browsers. This wraps
+  // HTMLCanvasElement.prototype.getContext but falls back silently if not supported.
+  try {
+    const _origGetContext = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function(type) {
+      if (type === '2d') {
+        try {
+          return _origGetContext.call(this, type, { willReadFrequently: true });
+        } catch (e) {
+          // Browser may not accept options — fall back to original
+        }
+      }
+      return _origGetContext.apply(this, arguments);
+    };
+  } catch (e) {
+    // Ignore in environments that don't expose HTMLCanvasElement
+  }
+
   initActive()
   bindEvenInit()
   var mycard = $('#mycard')
@@ -48,6 +67,10 @@
   }
 
   function postGiscusTheme(themeName) {
+    // 如果页面没有任何 .giscus 容器，直接返回（静默处理）
+    const wraps = document.querySelectorAll('.giscus');
+    if (!wraps || wraps.length === 0) return;
+
     // themeName can be 'dark'/'light' or any giscus-supported theme name or a CSS URL
     waitForGiscusIframes().then(iframes => {
       iframes.forEach(iframe => {
@@ -65,8 +88,8 @@
         }
       });
     }).catch(err => {
-      // 如果没有 iframe 或等待超时，记录但不中断流程
-      console.warn('giscus iframe not ready:', err);
+      // 如果没有 iframe 或等待超时，使用 debug 级别记录（避免噪音）
+      console.debug('giscus iframe not ready:', err);
     });
   }
 
