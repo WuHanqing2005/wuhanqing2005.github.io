@@ -1,19 +1,124 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Redirecting…</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Redirecting…</title>
 
-  <meta http-equiv="refresh" content="0; url=/zh-CN/">
+    <meta http-equiv="refresh" content="3; url=/en-US/">
 
-  <style>
-    body { font-family: sans-serif; padding: 40px; }
-  </style>
+    <style>
+        body { font-family: sans-serif; padding: 40px; }
+    </style>
 </head>
 
 <body>
-  <h2>正在跳转…</h2>
-  <p>如果未自动跳转，请访问：<a href="/zh-CN/">/zh-CN/</a></p>
+    <h2>正在跳转至您的语言版本…</h2>
+    <p>如果未自动跳转，请访问：<a id="fallback-link" href="/en-US/">/en-US/</a></p>
+
+    <script>
+        // --- IP 地理位置自动跳转脚本 ---
+        
+        // 免费且无需API Key的公共API：ip-api.com (限制：每分钟45次请求)
+        const API_URL = 'http://ip-api.com/json/';
+        
+        // 语言区与国家/地区代码的映射表
+        // 格式: '语言路径': ['国家代码1', '国家代码2', ...]
+        const LANGUAGE_MAP = {
+            'zh-CN': ['CN', 'HK', 'MO', 'TW'], // 中国, 香港, 澳门, 台湾 (中文区)
+            'ko-KR': ['KR', 'KP'],             // 韩国, 朝鲜 (韩语区)
+            'ja-JP': ['JP'],                   // 日本 (日语区)
+            'de-DE': ['DE', 'AT', 'CH'],       // 德国, 奥地利, 瑞士 (德语区)
+        };
+
+        // 默认跳转语言（未命中、出错或未包含的国家）
+        const DEFAULT_LANGUAGE_PATH = '/en-US/'; // 英语
+
+        // --- 测试IP列表（方便维护和测试）---
+        /*
+        // 中文区 (zh-CN)
+        CN: 101.6.0.0
+        HK: 203.186.254.0
+        TW: 60.248.163.0
+        
+        // 韩语区 (ko-KR)
+        KR: 112.221.155.0
+
+        // 日语区 (ja-JP)
+        JP: 103.111.196.0
+
+        // 德语区 (de-DE)
+        DE: 84.148.128.0
+        AT: 85.124.128.0
+        CH: 85.124.128.0
+
+        // 默认英文区 (en-US)
+        US (美国): 1.1.1.0
+        CA (加拿大): 24.10.0.0
+        GB (英国): 2.125.160.0
+        FR (法国): 2.9.224.0
+        AU (澳大利亚): 1.129.0.0
+        SG (新加坡): 103.5.253.0
+        BR (巴西): 138.185.0.0
+        RU (俄罗斯): 46.174.0.0
+        IN (印度): 45.116.128.0
+        SA (沙特阿拉伯): 178.232.128.0
+        ZA (南非): 41.160.0.0
+        */
+
+        function getRedirectPath(countryCode) {
+            // 将国家代码转为大写，确保匹配
+            const code = countryCode.toUpperCase();
+            
+            // 遍历映射表，查找匹配的语言路径
+            for (const path in LANGUAGE_MAP) {
+                if (LANGUAGE_MAP[path].includes(code)) {
+                    // 找到匹配项，返回对应的语言路径
+                    return '/' + path + '/';
+                }
+            }
+            
+            // 没有匹配到，返回默认路径
+            return DEFAULT_LANGUAGE_PATH;
+        }
+
+        function handleRedirect() {
+            fetch(API_URL)
+                .then(response => {
+                    // 检查响应状态是否成功
+                    if (!response.ok) {
+                        throw new Error('API request failed');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    let redirectPath = DEFAULT_LANGUAGE_PATH;
+
+                    // 检查API返回的状态，确保数据有效
+                    if (data.status === 'success' && data.countryCode) {
+                        const countryCode = data.countryCode;
+                        redirectPath = getRedirectPath(countryCode);
+                    }
+                    
+                    // 执行跳转
+                    console.log(`Detected Country: ${data.countryCode || 'Unknown'}. Redirecting to: ${redirectPath}`);
+                    document.getElementById('fallback-link').href = redirectPath; // 更新备用链接
+                    window.location.replace(redirectPath);
+                })
+                .catch(error => {
+                    // 错误处理：API请求失败或解析失败，使用默认路径
+                    console.error('IP Detection Error, using default path:', error);
+                    document.getElementById('fallback-link').href = DEFAULT_LANGUAGE_PATH; // 更新备用链接
+                    window.location.replace(DEFAULT_LANGUAGE_PATH);
+                });
+        }
+
+        // 页面加载后立即执行检测和跳转
+        handleRedirect();
+
+        // 移除HTML头部的 meta refresh，防止在JS执行前跳转
+        document.querySelector('meta[http-equiv="refresh"]').remove();
+
+    </script>
 </body>
 </html>
