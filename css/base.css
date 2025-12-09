@@ -1445,3 +1445,8 @@ html, body {
   max-width: 100%;
   overflow-x: hidden; /* 若站点确实包含需要横向滚动的特殊组件，请删除此项并解决具体组件 */
 }
+
+/* 针对特定页面锚点偏移问题的修复（根据需要调整选择器和偏移值） */
+#KHU-ENVELOP-DESIGN {
+  scroll-margin-top: 80px; /* 等于或略大于你 header 的高度 */
+}
