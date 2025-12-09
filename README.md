@@ -48,73 +48,39 @@ Web前端个人网站，网页个人网站模版，HTML&CSS&JS制作个人网站
 AI Prompt:
 
 我又开始修改个人网页了，请按照以下示例，在我后续对话给出的文本中，都翻译成中英韩日德五国语言格式，并且符合我的参数设置以及网页用语习惯。
+并且每次只给我转换成其中一个语言，按顺序给我从中文，生成对应的英语、韩语、日语、德语的HTML块，同时注意，链接以及文件名称等不要改动！
 
-例如：
-<h2 data-lang="cn">Daniel_清寒</h2>
-            <h2 data-lang="en" style="display:none">Daniel_Qinghan</h2>
-            <h2 data-lang="kr" style="display:none">Daniel_청한</h2>
-            <h2 data-lang="jp" style="display:none">Daniel_清寒</h2>
-            <h2 data-lang="de" style="display:none">Daniel_Qinghan</h2>
+例如，我给你：
 
-            <p class="me-hover">
-              <span data-lang="cn">少年不惧岁月长，彼方尚有荣光在。</span>
-              <span data-lang="en" style="display:none">Youth fears no time; glory awaits.</span>
-              <span data-lang="kr" style="display:none">시간이 흘러도 꿈은 반드시 피어난다.</span>
-              <span data-lang="jp" style="display:none">歩みを止めず、星へと続く道を。</span>
-              <span data-lang="de" style="display:none">Gehe weiter, zu den Sternen.</span>
+<!-- No.1 -->
+          <div class="carbox li3-box">
+            <h3>[网站]Daniel_清寒的航图查询网站</h3>
 
-或者：
-<!-- 2. 学院 / College / 단과대학 / 学部 / Fakultät -->
-            <div>
-              <span class="mecarbottm-key" data-lang="cn">就读学院</span>
-              <span class="mecarbottm-key" data-lang="en" style="display:none">College</span>
-              <span class="mecarbottm-key" data-lang="kr" style="display:none">재학학부</span>
-              <span class="mecarbottm-key" data-lang="jp" style="display:none">在学学部</span>
-              <span class="mecarbottm-key" data-lang="de" style="display:none">Fakultät</span>
+            <a href="https://chart.wuhanqing.cn/" target="_blank">
+              <p>进入网页: https://chart.wuhanqing.cn/</p>
+            </a>
 
-              <span class="mecarbottm-value" data-lang="cn">电子信息学院</span>
-              <span class="mecarbottm-value" data-lang="en" style="display:none">College of Electronics and Information Engineering</span>
-              <span class="mecarbottm-value" data-lang="kr" style="display:none">전자정보공학부</span>
-              <span class="mecarbottm-value" data-lang="jp" style="display:none">電子情報工学部</span>
-              <span class="mecarbottm-value" data-lang="de" style="display:none">Fakultät für Elektrotechnik und Informationstechnik</span>
-            </div>
+            <a href="https://github.com/WuHanqing2005/chart.wuhanqing.cn" target="_blank">
+              <p>GitHub开源: https://github.com/WuHanqing2005/chart.wuhanqing.cn</p>
+            </a>
 
-            <!-- 3. 系 / Department / 학과 / 学科 / Lehrstuhl -->
-            <div>
-              <span class="mecarbottm-key" data-lang="cn">就读院系</span>
-              <span class="mecarbottm-key" data-lang="en" style="display:none">Department</span>
-              <span class="mecarbottm-key" data-lang="kr" style="display:none">전공학과</span>
-              <span class="mecarbottm-key" data-lang="jp" style="display:none">専攻学科</span>
-              <span class="mecarbottm-key" data-lang="de" style="display:none">Lehrstuhl</span>
-
-              <span class="mecarbottm-value" data-lang="cn">电子工程系</span>
-              <span class="mecarbottm-value" data-lang="en" style="display:none">Department of Electronic Engineering</span>
-              <span class="mecarbottm-value" data-lang="kr" style="display:none">전자공학과</span>
-              <span class="mecarbottm-value" data-lang="jp" style="display:none">電子工学科</span>
-              <span class="mecarbottm-value" data-lang="de" style="display:none">Lehrstuhl für Elektrotechnik</span>
-            </div>
-
-            <!-- 4. 年级 / Class of / 학번 / 学年 / Jahrgang -->
-            <div>
-              <span class="mecarbottm-key" data-lang="cn">所在年级</span>
-              <span class="mecarbottm-key" data-lang="en" style="display:none">Class of</span>
-              <span class="mecarbottm-key" data-lang="kr" style="display:none">학번</span>
-              <span class="mecarbottm-key" data-lang="jp" style="display:none">学年</span>
-              <span class="mecarbottm-key" data-lang="de" style="display:none">Jahrgang</span>
-
-              <span class="mecarbottm-value" data-lang="cn">2025级</span>
-              <span class="mecarbottm-value" data-lang="en" style="display:none">2025</span>
-              <span class="mecarbottm-value" data-lang="kr" style="display:none">25학번</span>
-              <span class="mecarbottm-value" data-lang="jp" style="display:none">2025年度</span>
-              <span class="mecarbottm-value" data-lang="de" style="display:none">2025</span>
+            <div class="address-wrap">
+              <div class="address-left">
+                <!--
+                <span>vue</span>
+                <span>踩坑</span>
+                -->
+              </div>
+              <div class="address-right">
+                <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                  xmlns="http://www.w3.org/2000/svg" p-id="1979" width="20" height="20">
+                  <path
+                    d="M192 512a320 320 0 1 1 640 0 320 320 0 0 1-640 0zM512 128a384 384 0 1 0 0 768 384 384 0 0 0 0-768z m21.333333 224a32 32 0 0 0-64 0V554.666667h202.666667a32 32 0 0 0 0-64H533.333333V352z"
+                    fill="#222222" p-id="1980"></path>
+                </svg>
+                <span>2025-12-09 11:00(KST)</span>
+              </div>
             </div>
           </div>
 
-
-Git推送步骤
-
-git add .
-
-git commit -m "提交描述"
-
-git push
+你要依次把相关的要翻译的部分翻译了！！
