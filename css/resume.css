@@ -76,7 +76,7 @@ h6{
   flex-wrap: wrap;
 }
 .li3-box>div{
-  flex: 0 0 50%;
+  flex: 0 0 100%; /* width: 50% -> 显示两栏; 100% -> 显示一栏 */
   position: relative;
   /* margin-bottom: 10px; */
 }
