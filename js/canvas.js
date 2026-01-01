@@ -31,12 +31,18 @@ window.onload = function () {
 // ---------------------------------------------------
 window.onresize = function () {
   // If Paper.js has not been set up yet (or canvas missing), safely return
-  if (!paper.project || !paper.view) return;
+  if (!paper || !paper.project || !paper.view) return;
 
-  project.clear();
+  const proj = paper.project;
+  if (proj && typeof proj.clear === 'function') {
+    proj.clear();
+  } else {
+    return;
+  }
+
   // D = Math.max(paper.view.getSize().width, paper.view.getSize().height);
   // Draw the BG
-  var background = new Path.Rectangle(view.bounds);
+  var background = new Path.Rectangle(paper.view.bounds);
   // background.fillColor = '#3B3251';
   buildStars();
   if (triangle && typeof triangle.build === 'function') {
