@@ -1,88 +1,236 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Redirecting…</title>
-
+    <title>Routing Service | Cyber Security</title>
     <style>
-        body { font-family: sans-serif; padding: 40px; }
+        :root {
+            /* 高级暗色调配色 */
+            --bg-dark: #050a18;
+            --glass-bg: rgba(10, 20, 40, 0.7);
+            --neon-blue: #00d2ff;
+            --neon-purple: #9d50bb;
+            --text-main: #e0e6ed;
+            --accent-green: #00ffaa;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace; /* 科技感字体 */
+            background: radial-gradient(circle at center, #102a43 0%, #050a18 100%);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow: hidden;
+        }
+
+        /* 动态科技背景光晕 */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(157, 80, 187, 0.05) 0%, transparent 50%);
+            animation: pulse 10s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: translate(-25%, -25%); }
+            100% { transform: translate(0%, 0%); }
+        }
+
+        .glass-panel {
+            position: relative;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 50px;
+            width: 90%;
+            max-width: 520px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        /* 扫描线效果 */
+        .glass-panel::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 2px solid transparent;
+            border-top: 2px solid var(--neon-blue);
+            border-right: 2px solid var(--neon-purple);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 30px;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        h2 { 
+            margin: 0; 
+            font-size: 22px; 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+        }
+
+        .status-msg { opacity: 0.6; font-size: 13px; margin-top: 10px; }
+
+        .info-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px dotted rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .info-item { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 12px; 
+            font-size: 13px;
+        }
+
+        .label { color: rgba(255, 255, 255, 0.4); text-transform: uppercase; }
+        .value { color: var(--accent-green); text-shadow: 0 0 5px rgba(0, 255, 170, 0.3); }
+
+        .footer { font-size: 11px; color: rgba(255, 255, 255, 0.3); margin-top: 25px; }
+        a { color: var(--neon-purple); text-decoration: none; transition: 0.3s; }
+        a:hover { color: var(--neon-blue); text-shadow: 0 0 8px var(--neon-blue); }
+
     </style>
 </head>
-
 <body>
-    <h2>正在跳转至您的语言版本…</h2>
-    <p>如果未自动跳转，请访问：<a id="fallback-link" href="/en-US/">/en-US/</a></p>
+    <div class="glass-panel">
+        <div class="loader"></div>
+        <h2>Secure Routing</h2>
+        <p class="status-msg">Analyzing environment and bypassing nodes...</p>
+        
+        <div class="info-card">
+            <div class="info-item"><span class="label">User IP:</span><span class="value" id="ip-val">FETCHING...</span></div>
+            <div class="info-item"><span class="label">Geo Loc:</span><span class="value" id="loc-val">LOCATING...</span></div>
+            <div class="info-item"><span class="label">Gateway:</span><span class="value" id="host-val">CALCULATING...</span></div>
+            <div class="info-item"><span class="label">Standard:</span><span class="value" id="lang-val">MATCHING...</span></div>
+        </div>
+
+        <div class="footer">
+            UPLINK TO: <a id="fallback-link" href="#">INITIALIZING...</a>
+        </div>
+    </div>
 
     <script>
-        // --- IP 地理位置自动跳转脚本 ---
-        
-        // **已切换为支持 HTTPS 的稳定备用 API：ipinfo.io**
-        const API_URL = 'https://ipinfo.io/json'; 
-        
-        // 语言区与国家/地区代码的映射表
-        const LANGUAGE_MAP = {
-            'zh-CN': ['CN', 'HK', 'MO', 'TW'], // 中文区
-            'ko-KR': ['KR', 'KP'],             // 韩国, 朝鲜 (韩语区)
-            'ja-JP': ['JP'],                   // 日本 (日语区)
-            'de-DE': ['DE', 'AT', 'CH'],       // 德语区
-        };
+        (function () {
+            // --- 1. 配置信息 ---
+            const MAIN_HOST = 'wuhanqing.cn';
+            const GLOBAL_HOST = 'global.wuhanqing.cn';
 
-        // 默认跳转语言
-        const DEFAULT_LANGUAGE_PATH = '/en-US/'; // 英语
+            /**
+             * --- 测试 IP 列表 --- *
+             * 填入 TEST_IP 模拟特定地区，留空 '' 则检测你的真实 IP。
+             * 中国北京: 123.125.71.38   (目标: wuhanqing.cn / zh-CN)
+             * 中国上海: 47.100.108.36   (目标: wuhanqing.cn / zh-CN)
+             * 中国香港: 203.160.80.255  (目标: global.wuhanqing.cn / zh-CN)
+             * 中国澳门: 202.175.42.0    (目标: global.wuhanqing.cn / zh-CN)
+             * 中国台湾: 1.160.0.0       (目标: global.wuhanqing.cn / zh-CN)
+             * 日本东京: 106.187.46.0    (目标: global.wuhanqing.cn / ja-JP)
+             * 韩国首尔: 211.234.229.0   (目标: global.wuhanqing.cn / ko-KR)
+             * 德国柏林: 176.9.0.0       (目标: global.wuhanqing.cn / de-DE)
+             * 美国纽约: 161.123.0.0     (目标: global.wuhanqing.cn / en-US)
+             * 英国伦敦: 25.0.0.0        (目标: global.wuhanqing.cn / en-US)
+             * 瑞士苏黎世: 146.159.0.0  (目标: global.wuhanqing.cn / de-DE)
+             */
+            const TEST_IP = ''; // <--- 在此处填入 IP 进行测试
 
-        // --- 测试IP列表（保持不变，已在HTML注释中）---
-        
-        function getRedirectPath(countryCode) {
-            const code = countryCode.toUpperCase();
-            
-            for (const path in LANGUAGE_MAP) {
-                if (LANGUAGE_MAP[path].includes(code)) {
-                    return '/' + path + '/';
+            const LANGUAGE_MAP = {
+                'zh-CN': ['CN', 'HK', 'MO', 'TW'],
+                'ko-KR': ['KR', 'KP'],
+                'ja-JP': ['JP'],
+                'de-DE': ['DE', 'AT', 'CH']
+            };
+            const DEFAULT_LANG_PATH = '/en-US/';
+
+            // 获取语言路径
+            function getLangPath(countryCode) {
+                const code = (countryCode || '').toUpperCase();
+                for (const path in LANGUAGE_MAP) {
+                    if (LANGUAGE_MAP[path].includes(code)) return '/' + path + '/';
                 }
+                return DEFAULT_LANG_PATH;
             }
+
+            // 更新 UI 展示
+            function updateUI(data, targetHost, langPath) {
+                document.getElementById('ip-val').innerText = data.ip || '0.0.0.0';
+                document.getElementById('loc-val').innerText = (data.city || 'UNKNOWN') + ', ' + (data.country || 'GLOBAL');
+                document.getElementById('host-val').innerText = targetHost.toUpperCase();
+                document.getElementById('lang-val').innerText = langPath.toUpperCase().replace(/\//g, '');
+                
+                const finalUrl = "https://" + targetHost + langPath;
+                const link = document.getElementById('fallback-link');
+                link.href = finalUrl;
+                link.innerText = finalUrl;
+            }
+
+            // 执行核心重定向逻辑
+            function doRedirect(data) {
+                const code = (data.country || '').toUpperCase();
+                const langPath = getLangPath(code);
+                
+                // 关键逻辑：只有中国大陆(CN)去主站，其他(包括港澳台)全去海外加速站
+                const targetHost = (code === 'CN') ? MAIN_HOST : GLOBAL_HOST;
+                const finalUrl = "https://" + targetHost + langPath;
+
+                updateUI(data, targetHost, langPath);
+
+                // 延迟 1000 毫秒跳转，展示科技感 UI
+                setTimeout(() => {
+                    if (window.location.href !== finalUrl) {
+                        window.location.replace(finalUrl);
+                    }
+                }, 1000);
+            }
+
+            // 防死循环检查
+            const path = window.location.pathname;
+            const isTargetDir = Object.keys(LANGUAGE_MAP).some(lang => path.includes('/' + lang + '/')) || path.includes('/en-US/');
+            if (isTargetDir) return;
+
+            // 调用接口
+            const apiUrl = TEST_IP ? `https://ipinfo.io/${TEST_IP}/json` : 'https://ipinfo.io/json';
             
-            return DEFAULT_LANGUAGE_PATH;
-        }
-
-        function handleRedirect() {
-            fetch(API_URL)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('API request failed: ' + response.statusText);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    let redirectPath = DEFAULT_LANGUAGE_PATH;
-
-                    // **核心修复：ipinfo.io 使用 'country' 键名，不需要检查 'status'**
-                    if (data.country) { 
-                        const countryCode = data.country;
-                        redirectPath = getRedirectPath(countryCode);
-                    }
-                    
-                    // 执行跳转
-                    console.log(`Detected Country: ${data.country || 'Unknown'}. Redirecting to: ${redirectPath}`);
-                    document.getElementById('fallback-link').href = redirectPath;
-                    window.location.replace(redirectPath);
-                })
-                .catch(error => {
-                    // 错误处理：API请求失败，使用默认路径
-                    console.error('IP Detection Error, using default path:', error);
-                    document.getElementById('fallback-link').href = DEFAULT_LANGUAGE_PATH;
-                    window.location.replace(DEFAULT_LANGUAGE_PATH);
+            fetch(apiUrl)
+                .then(res => res.ok ? res.json() : Promise.reject())
+                .then(data => doRedirect(data))
+                .catch(() => {
+                    // 兜底逻辑
+                    const currentHost = window.location.hostname;
+                    const fallbackData = { 
+                        ip: 'STATIC_IP', 
+                        country: currentHost === MAIN_HOST ? 'CN' : 'US', 
+                        city: 'SECURE_GATEWAY' 
+                    };
+                    doRedirect(fallbackData);
                 });
-        }
-
-        // 页面加载后立即执行检测和跳转
-        // 确保在执行 handleRedirect() 之前移除 meta refresh，避免竞态条件。
-        const metaRefresh = document.querySelector('meta[http-equiv="refresh"]');
-        if (metaRefresh) {
-            metaRefresh.remove();
-        }
-
-        handleRedirect();
+        })();
     </script>
 </body>
 </html>
