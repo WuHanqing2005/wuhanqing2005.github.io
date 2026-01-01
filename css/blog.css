@@ -121,6 +121,53 @@
   margin: 20px 0;
   opacity: .8;
 }
+
+/* 简介文本样式：科技感霓虹边框+暗色磨砂 */
+.li3-box .intro {
+  margin: 12px 0 10px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(18, 22, 28, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.10);
+  color: var(--headerFont);
+  font-size: 14px;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* 霓虹渐变描边与微光网格 */
+.li3-box .intro::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(120deg, var(--mainColor), #00e7ff, #7b5bff, var(--mainColor));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.li3-box .intro::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.06;
+  pointer-events: none;
+}
 .address-wrap{
   display: flex;
   justify-content: space-between;

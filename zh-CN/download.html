@@ -390,6 +390,17 @@
             <span>01</span>
           </h3>
 
+          <!-- 话题筛选按钮 -->
+          <div class="topic-filter">
+            <ul>
+              <li class="active" data-topic="all">全部</li>
+              <li data-topic="网页应用">网页应用</li>
+              <li data-topic="程序工具">程序工具</li>
+              <li data-topic="学习资源">学习资源</li>
+              <li data-topic="设计资源">设计资源</li>
+            </ul>
+          </div>
+
           <!-- 搜索栏（与 blog.html 保持一致） -->
           <div class="search-bar">
             <input type="text" id="search-input" placeholder="搜索资源标题或内容">
@@ -398,9 +409,39 @@
 
           <!-- 在下方添加资源 -->
 
+          <!-- No.7 -->
+          <div class="carbox li3-box" data-topics="网页应用, 学习资源">
+            <h3>[网站]单片机在线音频测试平台</h3>
+            <p class="intro">在线上传或选择音频，实时播放与频谱查看，支持ESP32/STM32外接调试，适合课堂实验、硬件测试与声学学习。</p>
+
+            <a href="https://audio.wuhanqing.cn/" target="_blank">
+              <p>进入网页: https://audio.wuhanqing.cn/</p>
+            </a>
+
+            <a href="https://github.com/WuHanqing2005/audio.wuhanqing.cn" target="_blank">
+              <p>GitHub开源: https://github.com/WuHanqing2005/audio.wuhanqing.cn</p>
+            </a>
+
+            <div class="address-wrap">
+              <div class="address-left">
+                <span class="article-topic"></span>
+              </div>
+              <div class="address-right">
+                <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                  xmlns="http://www.w3.org/2000/svg" p-id="1979" width="20" height="20">
+                  <path
+                    d="M192 512a320 320 0 1 1 640 0 320 320 0 0 1-640 0zM512 128a384 384 0 1 0 0 768 384 384 0 0 0 0-768z m21.333333 224a32 32 0 0 0-64 0V554.666667h202.666667a32 32 0 0 0 0-64H533.333333V352z"
+                    fill="#222222" p-id="1980"></path>
+                </svg>
+                <span>2026-01-01 22:00(KST)</span>
+              </div>
+            </div>
+          </div>
+
           <!-- No.6 -->
-          <div class="carbox li3-box" id="KHU-ENVELOP-DESIGN">
+          <div class="carbox li3-box" id="KHU-ENVELOP-DESIGN" data-topics="设计资源">
             <h3>[信封设计]庆熙大学信封设计</h3>
+            <p class="intro">庆熙大学主题信封PSD/AI矢量模板，含出血尺寸与打印辅助线，下载即可编辑、批量印刷，适合活动邀请或校友寄送。</p>
 
             <a href="https://r2.wuhanqing.cn/KHU-ENVELOP-DESIGN-2025.12.09.zip" target="_blank">
               <p>点击下载: KHU-ENVELOP-DESIGN-2025.12.09.zip</p>
@@ -412,10 +453,7 @@
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -430,8 +468,9 @@
           </div>
 
           <!-- No.5 -->
-          <div class="carbox li3-box">
+          <div class="carbox li3-box" data-topics="程序工具">
             <h3>[程序]机场语音自动广播系统</h3>
+            <p class="intro">面向机场场景的自动播报程序，支持多语言模板、定时队列与背景乐控制，可灵活配置航班信息并循环提醒旅客。</p>
 
             <a href="https://r2.wuhanqing.cn/Airport-Flight-Announcement-System-2025.11.12.zip" target="_blank">
               <p>点击下载: Airport-Flight-Announcement-System-2025.11.12.zip</p>
@@ -443,10 +482,7 @@
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -461,8 +497,9 @@
           </div>
 
           <!-- No.4 -->
-          <div class="carbox li3-box">
+          <div class="carbox li3-box" data-topics="程序工具">
             <h3>[程序]电影院自动广播系统</h3>
+            <p class="intro">影院自动播报系统，支持影厅排期播报、场次提醒与紧急插播，覆盖开场提示、文明观影与结束散场等常用文案。</p>
 
             <a href="https://r2.wuhanqing.cn/Automatic-Cinema-Announcement-System-2025.03.07.zip" target="_blank">
               <p>点击下载: Automatic-Cinema-Announcement-System-2025.03.07.zip</p>
@@ -474,10 +511,7 @@
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -492,8 +526,9 @@
           </div>
 
           <!-- No.3 -->
-          <div class="carbox li3-box">
+          <div class="carbox li3-box" data-topics="网页应用">
             <h3>[网站]Daniel_清寒的实时汇率监控网站</h3>
+            <p class="intro">实时抓取主要货币行情，提供走势图与基础换算，便于出行、外贸或学习金融时快速参考每日汇率波动。</p>
 
             <a href="https://currency.wuhanqing.cn/" target="_blank">
               <p>进入网页: https://currency.wuhanqing.cn/</p>
@@ -505,10 +540,7 @@
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -523,8 +555,9 @@
           </div>
 
           <!-- No.2 -->
-          <div class="carbox li3-box">
+          <div class="carbox li3-box" data-topics="网页应用">
             <h3>[网站]Daniel_清寒的邮政小站</h3>
+            <p class="intro">简洁的邮政工具集合，包含邮编查询、快件追踪与资费参考，方便日常寄件或了解邮政流程时快速查找信息。</p>
 
             <a href="https://post.wuhanqing.cn/" target="_blank">
               <p>进入网页: https://post.wuhanqing.cn/</p>
@@ -536,10 +569,7 @@
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -554,8 +584,9 @@
           </div>
 
           <!-- No.1 -->
-          <div class="carbox li3-box">
+          <div class="carbox li3-box" data-topics="网页应用">
             <h3>[网站]Daniel_清寒的航图查询网站</h3>
+            <p class="intro">收录主要航线与机场航图，支持在线浏览与快速定位，适合飞行模拟、航务学习或航空爱好者查阅导航资料。</p>
 
             <a href="https://chart.wuhanqing.cn/" target="_blank">
               <p>进入网页: https://chart.wuhanqing.cn/</p>
@@ -567,10 +598,7 @@
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -584,34 +612,8 @@
             </div>
           </div>
 
-          <!-- No.3 -->
-          <!--
-          <div class="carbox li3-box">
-            <a>对象响应式属性的添加或删除(！！致使引导地址发生改变才会触发响应)</a>
-            <p>
-              Vue.set(object, key, value) <br>
-              vm.userProfile = Object.assign({}, vm.object, { 在vuex中可以这样修改 <br>
-              key: value,<br>
-              key: value<br>
-              })
-            </p>
-            <div class="address-wrap">
-              <div class="address-left">
-                <span>vue</span>
-                <span>踩坑</span>
-              </div>
-              <div class="address-right">
-                <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                  xmlns="http://www.w3.org/2000/svg" p-id="1979" width="20" height="20">
-                  <path
-                    d="M192 512a320 320 0 1 1 640 0 320 320 0 0 1-640 0zM512 128a384 384 0 1 0 0 768 384 384 0 0 0 0-768z m21.333333 224a32 32 0 0 0-64 0V554.666667h202.666667a32 32 0 0 0 0-64H533.333333V352z"
-                    fill="#222222" p-id="1980"></path>
-                </svg>
-                <span>2022-07-10 10:43:23</span>
-              </div>
-            </div>
-          </div>
-          -->
+          <!-- 文章结束 -->
+           
         </div>
         <div class="borderbotm"></div>
 

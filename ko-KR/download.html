@@ -386,22 +386,63 @@
 
         <div class="content-li li3">
           <h3>
-            <span>모든 자료</span>
+            <span>전체 리소스</span>
             <div class="borderbotm"></div>
             <span>01</span>
           </h3>
 
+          <!-- 话题筛选按钮 -->
+          <div class="topic-filter">
+            <ul>
+              <li class="active" data-topic="all">전체</li>
+              <li data-topic="웹 프로그램">웹 프로그램</li>
+              <li data-topic="프로그램 도구">프로그램 도구</li>
+              <li data-topic="학습 자료">학습 자료</li>
+              <li data-topic="디자인 자료">디자인 자료</li>
+            </ul>
+          </div>
+
           <!-- 搜索栏（与 blog.html 保持一致） -->
           <div class="search-bar">
-            <input type="text" id="search-input" placeholder="자료 제목 또는 내용 검색">
+            <input type="text" id="search-input" placeholder="리소스 제목이나 내용을 검색">
             <button id="search-button">검색</button>
           </div>
 
           <!-- 在下方添加资源 -->
 
+          <!-- No.7 -->
+          <div class="carbox li3-box" data-topics="웹 프로그램, 학습 자료">
+            <h3>[웹] 마이컴 온라인 오디오 테스트 플랫폼</h3>
+            <p class="intro">오디오를 업로드하거나 선택해 실시간 재생과 스펙트럼 확인을 지원하며, ESP32/STM32 외부 디버깅도 가능해 수업 실험, 하드웨어 테스트, 음향 학습에 적합합니다.</p>
+
+            <a href="https://audio.wuhanqing.cn/" target="_blank">
+              <p>웹페이지: https://audio.wuhanqing.cn/</p>
+            </a>
+
+            <a href="https://github.com/WuHanqing2005/audio.wuhanqing.cn" target="_blank">
+              <p>GitHub 오픈소스: https://github.com/WuHanqing2005/audio.wuhanqing.cn</p>
+            </a>
+
+            <div class="address-wrap">
+              <div class="address-left">
+                <span class="article-topic"></span>
+              </div>
+              <div class="address-right">
+                <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                  xmlns="http://www.w3.org/2000/svg" p-id="1979" width="20" height="20">
+                  <path
+                    d="M192 512a320 320 0 1 1 640 0 320 320 0 0 1-640 0zM512 128a384 384 0 1 0 0 768 384 384 0 0 0 0-768z m21.333333 224a32 32 0 0 0-64 0V554.666667h202.666667a32 32 0 0 0 0-64H533.333333V352z"
+                    fill="#222222" p-id="1980"></path>
+                </svg>
+                <span>2026-01-01 22:00(KST)</span>
+              </div>
+            </div>
+          </div>
+
           <!-- No.6 -->
-          <div class="carbox li3-box" id="KHU-ENVELOP-DESIGN">
-            <h3>[봉투 디자인]경희대학교 봉투 디자인</h3>
+          <div class="carbox li3-box" id="KHU-ENVELOP-DESIGN" data-topics="디자인 자료">
+            <h3>[봉투 디자인] 경희대 봉투 디자인</h3>
+            <p class="intro">경희대 테마 PSD/AI 벡터 템플릿으로 재단선과 여백을 포함해 바로 편집·대량 인쇄가 가능하며, 행사 초대장이나 동문 발송에 활용하기 좋습니다.</p>
 
             <a href="https://r2.wuhanqing.cn/KHU-ENVELOP-DESIGN-2025.12.09.zip" target="_blank">
               <p>다운로드: KHU-ENVELOP-DESIGN-2025.12.09.zip</p>
@@ -413,10 +454,7 @@
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -431,8 +469,9 @@
           </div>
 
           <!-- No.5 -->
-          <div class="carbox li3-box">
-            <h3>[프로그램]공항 음성 자동 방송 시스템</h3>
+          <div class="carbox li3-box" data-topics="프로그램 도구">
+            <h3>[프로그램] 공항 자동 안내 방송 시스템</h3>
+            <p class="intro">공항 시나리오에 맞춰 다국어 템플릿, 예약 큐, 배경음악 제어를 제공하며, 항공편 정보와 반복 알림을 유연하게 설정할 수 있습니다.</p>
 
             <a href="https://r2.wuhanqing.cn/Airport-Flight-Announcement-System-2025.11.12.zip" target="_blank">
               <p>다운로드: Airport-Flight-Announcement-System-2025.11.12.zip</p>
@@ -444,10 +483,7 @@
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -462,8 +498,9 @@
           </div>
 
           <!-- No.4 -->
-          <div class="carbox li3-box">
-            <h3>[프로그램]영화관 자동 방송 시스템</h3>
+          <div class="carbox li3-box" data-topics="프로그램 도구">
+            <h3>[프로그램] 영화관 자동 방송 시스템</h3>
+            <p class="intro">관람관 스케줄 방송, 상영 시간 알림, 비상 삽입 방송을 지원하며, 상영 전 안내, 관람 예절, 종료 후 퇴장 안내까지 커버합니다.</p>
 
             <a href="https://r2.wuhanqing.cn/Automatic-Cinema-Announcement-System-2025.03.07.zip" target="_blank">
               <p>다운로드: Automatic-Cinema-Announcement-System-2025.03.07.zip</p>
@@ -475,10 +512,7 @@
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -493,11 +527,12 @@
           </div>
 
           <!-- No.3 -->
-          <div class="carbox li3-box">
-            <h3>[웹사이트]Daniel_청한의 실시간 환율 모니터링 웹사이트</h3>
+          <div class="carbox li3-box" data-topics="웹 프로그램">
+            <h3>[웹] Daniel_清寒 실시간 환율 모니터</h3>
+            <p class="intro">주요 통화 시세를 실시간으로 불러와 차트와 간단한 환산을 제공하며, 여행·무역·금융 학습에 유용합니다.</p>
 
             <a href="https://currency.wuhanqing.cn/" target="_blank">
-              <p>웹사이트 방문: https://currency.wuhanqing.cn/</p>
+              <p>웹페이지: https://currency.wuhanqing.cn/</p>
             </a>
 
             <a href="https://github.com/WuHanqing2005/currency.wuhanqing.cn" target="_blank">
@@ -506,10 +541,7 @@
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -524,11 +556,12 @@
           </div>
 
           <!-- No.2 -->
-          <div class="carbox li3-box">
-            <h3>[웹사이트]Daniel_청한의 우편 소식지</h3>
+          <div class="carbox li3-box" data-topics="웹 프로그램">
+            <h3>[웹] Daniel_清寒의 우편 스테이션</h3>
+            <p class="intro">우편번호 조회, 택배 추적, 요금 참고를 담은 간단한 우편 도구로 일상 발송이나 우편 절차 이해에 유용합니다.</p>
 
             <a href="https://post.wuhanqing.cn/" target="_blank">
-              <p>웹사이트 방문: https://post.wuhanqing.cn/</p>
+              <p>웹페이지: https://post.wuhanqing.cn/</p>
             </a>
 
             <a href="https://github.com/WuHanqing2005/post.wuhanqing.cn" target="_blank">
@@ -537,10 +570,7 @@
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -555,11 +585,12 @@
           </div>
 
           <!-- No.1 -->
-          <div class="carbox li3-box">
-            <h3>[웹사이트]Daniel_청한의 항공 차트 조회 사이트</h3>
+          <div class="carbox li3-box" data-topics="웹 프로그램">
+            <h3>[웹] Daniel_清寒의 항공 차트 조회</h3>
+            <p class="intro">주요 항로와 공항 차트를 모아 온라인 열람과 빠른 위치 찾기를 지원해 비행 시뮬, 운항 학습, 항공 애호가에게 유용합니다.</p>
 
             <a href="https://chart.wuhanqing.cn/" target="_blank">
-              <p>웹사이트 방문: https://chart.wuhanqing.cn/</p>
+              <p>웹페이지: https://chart.wuhanqing.cn/</p>
             </a>
 
             <a href="https://github.com/WuHanqing2005/chart.wuhanqing.cn" target="_blank">
@@ -568,10 +599,7 @@
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -585,34 +613,8 @@
             </div>
           </div>
 
-          <!-- No.3 -->
-          <!--
-          <div class="carbox li3-box">
-            <a>对象响应式属性的添加或删除(！！致使引导地址发生改变才会触发响应)</a>
-            <p>
-              Vue.set(object, key, value) <br>
-              vm.userProfile = Object.assign({}, vm.object, { 在vuex中可以这样修改 <br>
-              key: value,<br>
-              key: value<br>
-              })
-            </p>
-            <div class="address-wrap">
-              <div class="address-left">
-                <span>vue</span>
-                <span>踩坑</span>
-              </div>
-              <div class="address-right">
-                <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                  xmlns="http://www.w3.org/2000/svg" p-id="1979" width="20" height="20">
-                  <path
-                    d="M192 512a320 320 0 1 1 640 0 320 320 0 0 1-640 0zM512 128a384 384 0 1 0 0 768 384 384 0 0 0 0-768z m21.333333 224a32 32 0 0 0-64 0V554.666667h202.666667a32 32 0 0 0 0-64H533.333333V352z"
-                    fill="#222222" p-id="1980"></path>
-                </svg>
-                <span>2022-07-10 10:43:23</span>
-              </div>
-            </div>
-          </div>
-          -->
+          <!-- 文章结束 -->
+           
         </div>
         <div class="borderbotm"></div>
 

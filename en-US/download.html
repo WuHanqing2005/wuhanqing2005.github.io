@@ -391,32 +391,70 @@
             <span>01</span>
           </h3>
 
+          <!-- 话题筛选按钮 -->
+          <div class="topic-filter">
+            <ul>
+              <li class="active" data-topic="all">All</li>
+              <li data-topic="Web Program">Web Program</li>
+              <li data-topic="Software Tools">Software Tools</li>
+              <li data-topic="Learning Resources">Learning Resources</li>
+              <li data-topic="Design Assets">Design Assets</li>
+            </ul>
+          </div>
+
           <!-- 搜索栏（与 blog.html 保持一致） -->
           <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Search resource titles or content">
+            <input type="text" id="search-input" placeholder="Search resource title or content">
             <button id="search-button">Search</button>
           </div>
 
           <!-- 在下方添加资源 -->
 
-          <!-- No.6 -->
-          <div class="carbox li3-box" id="KHU-ENVELOP-DESIGN">
-            <h3>[Envelope Design]Kyung Hee University Envelope Design</h3>
+          <!-- No.7 -->
+          <div class="carbox li3-box" data-topics="Web Program, Learning Resources">
+            <h3>[Website] MCU Online Audio Test Platform</h3>
+            <p class="intro">Upload or pick audio online to play and view the spectrum in real time; supports ESP32/STM32 external debugging; great for class labs, hardware testing, and acoustics study.</p>
 
-            <a href="https://r2.wuhanqing.cn/KHU-ENVELOP-DESIGN-2025.12.09.zip" target="_blank">
-              <p>Click to download: KHU-ENVELOP-DESIGN-2025.12.09.zip</p>
+            <a href="https://audio.wuhanqing.cn/" target="_blank">
+              <p>Open site: https://audio.wuhanqing.cn/</p>
             </a>
 
-            <a href="https://github.com/WuHanqing2005/KHU-ENVELOP-DESIGN" target="_blank">
-              <p>GitHub Open Source: https://github.com/WuHanqing2005/KHU-ENVELOP-DESIGN</p>
+            <a href="https://github.com/WuHanqing2005/audio.wuhanqing.cn" target="_blank">
+              <p>GitHub: https://github.com/WuHanqing2005/audio.wuhanqing.cn</p>
             </a>
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
+              </div>
+              <div class="address-right">
+                <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                  xmlns="http://www.w3.org/2000/svg" p-id="1979" width="20" height="20">
+                  <path
+                    d="M192 512a320 320 0 1 1 640 0 320 320 0 0 1-640 0zM512 128a384 384 0 1 0 0 768 384 384 0 0 0 0-768z m21.333333 224a32 32 0 0 0-64 0V554.666667h202.666667a32 32 0 0 0 0-64H533.333333V352z"
+                    fill="#222222" p-id="1980"></path>
+                </svg>
+                <span>2026-01-01 22:00(KST)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- No.6 -->
+          <div class="carbox li3-box" id="KHU-ENVELOP-DESIGN" data-topics="Design Assets">
+            <h3>[Envelope Design] Kyung Hee University Envelope Template</h3>
+            <p class="intro">Kyung Hee University themed PSD/AI vector templates with bleed and print guides; download to edit and batch print, perfect for event invites or alumni mailings.</p>
+
+            <a href="https://r2.wuhanqing.cn/KHU-ENVELOP-DESIGN-2025.12.09.zip" target="_blank">
+              <p>Download: KHU-ENVELOP-DESIGN-2025.12.09.zip</p>
+            </a>
+
+            <a href="https://github.com/WuHanqing2005/KHU-ENVELOP-DESIGN" target="_blank">
+              <p>GitHub: https://github.com/WuHanqing2005/KHU-ENVELOP-DESIGN</p>
+            </a>
+
+            <div class="address-wrap">
+              <div class="address-left">
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -431,23 +469,21 @@
           </div>
 
           <!-- No.5 -->
-          <div class="carbox li3-box">
-            <h3>[Program]Airport Voice Announcement System</h3>
+          <div class="carbox li3-box" data-topics="Software Tools">
+            <h3>[Program] Airport Auto Announcement System</h3>
+            <p class="intro">Built for airport scenarios with multilingual templates, scheduled queues, and background music control; flexibly configure flight info and loop reminders.</p>
 
             <a href="https://r2.wuhanqing.cn/Airport-Flight-Announcement-System-2025.11.12.zip" target="_blank">
-              <p>Click to download: Airport-Flight-Announcement-System-2025.11.12.zip</p>
+              <p>Download: Airport-Flight-Announcement-System-2025.11.12.zip</p>
             </a>
 
             <a href="https://github.com/WuHanqing2005/Airport-Flight-Announcement-System" target="_blank">
-              <p>GitHub Open Source: https://github.com/WuHanqing2005/Airport-Flight-Announcement-System</p>
+              <p>GitHub: https://github.com/WuHanqing2005/Airport-Flight-Announcement-System</p>
             </a>
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -462,23 +498,21 @@
           </div>
 
           <!-- No.4 -->
-          <div class="carbox li3-box">
-            <h3>[Program]Automatic Cinema Announcement System</h3>
+          <div class="carbox li3-box" data-topics="Software Tools">
+            <h3>[Program] Cinema Auto Announcement System</h3>
+            <p class="intro">Supports auditorium schedule broadcasts, showtime reminders, and emergency inserts; covers pre-show tips, etiquette messaging, and end-of-show dispersal notices.</p>
 
             <a href="https://r2.wuhanqing.cn/Automatic-Cinema-Announcement-System-2025.03.07.zip" target="_blank">
-              <p>Click to download: Automatic-Cinema-Announcement-System-2025.03.07.zip</p>
+              <p>Download: Automatic-Cinema-Announcement-System-2025.03.07.zip</p>
             </a>
 
             <a href="https://github.com/WuHanqing2005/Automatic-Cinema-Announcement-System" target="_blank">
-              <p>GitHub Open Source: https://github.com/WuHanqing2005/Automatic-Cinema-Announcement-System</p>
+              <p>GitHub: https://github.com/WuHanqing2005/Automatic-Cinema-Announcement-System</p>
             </a>
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -493,23 +527,21 @@
           </div>
 
           <!-- No.3 -->
-          <div class="carbox li3-box">
-            <h3>[Website]Daniel_Qinghan's Real-time Exchange Rate Monitoring Website</h3>
+          <div class="carbox li3-box" data-topics="Web Program">
+            <h3>[Website] Daniel_Qinghan's Live FX Monitor</h3>
+            <p class="intro">Pulls major currency quotes in real time with charts and basic conversion, handy for travel, trade, or studying finance.</p>
 
             <a href="https://currency.wuhanqing.cn/" target="_blank">
-              <p>Visit Website: https://currency.wuhanqing.cn/</p>
+              <p>Open site: https://currency.wuhanqing.cn/</p>
             </a>
 
             <a href="https://github.com/WuHanqing2005/currency.wuhanqing.cn" target="_blank">
-              <p>GitHub Open Source: https://github.com/WuHanqing2005/currency.wuhanqing.cn</p>
+              <p>GitHub: https://github.com/WuHanqing2005/currency.wuhanqing.cn</p>
             </a>
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -524,23 +556,21 @@
           </div>
 
           <!-- No.2 -->
-          <div class="carbox li3-box">
-            <h3>[Website]Daniel_Qinghan's Postal Station</h3>
+          <div class="carbox li3-box" data-topics="Web Program">
+            <h3>[Website] Daniel_Qinghan's Postal Toolkit</h3>
+            <p class="intro">A simple postal toolkit with ZIP lookup, parcel tracking, and rate references—handy for daily shipping or understanding postal steps.</p>
 
             <a href="https://post.wuhanqing.cn/" target="_blank">
-              <p>Visit Website: https://post.wuhanqing.cn/</p>
+              <p>Open site: https://post.wuhanqing.cn/</p>
             </a>
 
             <a href="https://github.com/WuHanqing2005/post.wuhanqing.cn" target="_blank">
-              <p>GitHub Open Source: https://github.com/WuHanqing2005/post.wuhanqing.cn</p>
+              <p>GitHub: https://github.com/WuHanqing2005/post.wuhanqing.cn</p>
             </a>
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -555,23 +585,21 @@
           </div>
 
           <!-- No.1 -->
-          <div class="carbox li3-box">
-            <h3>[Website]Daniel_Qinghan's Aviation Maps Search Website</h3>
+          <div class="carbox li3-box" data-topics="Web Program">
+            <h3>[Website] Daniel_Qinghan's Aeronautical Chart Finder</h3>
+            <p class="intro">Collects major routes and airport charts with online viewing and quick locating—useful for flight sim, flight ops study, or aviation enthusiasts.</p>
 
             <a href="https://chart.wuhanqing.cn/" target="_blank">
-              <p>Visit Website: https://chart.wuhanqing.cn/</p>
+              <p>Open site: https://chart.wuhanqing.cn/</p>
             </a>
 
             <a href="https://github.com/WuHanqing2005/chart.wuhanqing.cn" target="_blank">
-              <p>GitHub Open Source: https://github.com/WuHanqing2005/chart.wuhanqing.cn</p>
+              <p>GitHub: https://github.com/WuHanqing2005/chart.wuhanqing.cn</p>
             </a>
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -585,34 +613,8 @@
             </div>
           </div>
 
-          <!-- No.3 -->
-          <!--
-          <div class="carbox li3-box">
-            <a>对象响应式属性的添加或删除(！！致使引导地址发生改变才会触发响应)</a>
-            <p>
-              Vue.set(object, key, value) <br>
-              vm.userProfile = Object.assign({}, vm.object, { 在vuex中可以这样修改 <br>
-              key: value,<br>
-              key: value<br>
-              })
-            </p>
-            <div class="address-wrap">
-              <div class="address-left">
-                <span>vue</span>
-                <span>踩坑</span>
-              </div>
-              <div class="address-right">
-                <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                  xmlns="http://www.w3.org/2000/svg" p-id="1979" width="20" height="20">
-                  <path
-                    d="M192 512a320 320 0 1 1 640 0 320 320 0 0 1-640 0zM512 128a384 384 0 1 0 0 768 384 384 0 0 0 0-768z m21.333333 224a32 32 0 0 0-64 0V554.666667h202.666667a32 32 0 0 0 0-64H533.333333V352z"
-                    fill="#222222" p-id="1980"></path>
-                </svg>
-                <span>2022-07-10 10:43:23</span>
-              </div>
-            </div>
-          </div>
-          -->
+          <!-- 文章结束 -->
+           
         </div>
         <div class="borderbotm"></div>
 

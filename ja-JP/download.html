@@ -391,6 +391,17 @@
             <span>01</span>
           </h3>
 
+          <!-- 话题筛选按钮 -->
+          <div class="topic-filter">
+            <ul>
+              <li class="active" data-topic="all">すべて</li>
+              <li data-topic="Webプログラム">Webプログラム</li>
+              <li data-topic="プログラムツール">プログラムツール</li>
+              <li data-topic="学習リソース">学習リソース</li>
+              <li data-topic="デザインリソース">デザインリソース</li>
+            </ul>
+          </div>
+
           <!-- 搜索栏（与 blog.html 保持一致） -->
           <div class="search-bar">
             <input type="text" id="search-input" placeholder="リソースのタイトルまたは内容を検索">
@@ -399,24 +410,51 @@
 
           <!-- 在下方添加资源 -->
 
+          <!-- No.7 -->
+          <div class="carbox li3-box" data-topics="Webプログラム, 学習リソース">
+            <h3>[ウェブ] マイコン向けオンライン音声テストプラットフォーム</h3>
+            <p class="intro">音声をアップロード・選択してリアルタイム再生とスペクトラム表示ができ、ESP32/STM32の外部デバッグに対応。授業実験、ハードウェア検証、音響学習に最適です。</p>
+
+            <a href="https://audio.wuhanqing.cn/" target="_blank">
+              <p>ページを開く: https://audio.wuhanqing.cn/</p>
+            </a>
+
+            <a href="https://github.com/WuHanqing2005/audio.wuhanqing.cn" target="_blank">
+              <p>GitHub オープンソース: https://github.com/WuHanqing2005/audio.wuhanqing.cn</p>
+            </a>
+
+            <div class="address-wrap">
+              <div class="address-left">
+                <span class="article-topic"></span>
+              </div>
+              <div class="address-right">
+                <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                  xmlns="http://www.w3.org/2000/svg" p-id="1979" width="20" height="20">
+                  <path
+                    d="M192 512a320 320 0 1 1 640 0 320 320 0 0 1-640 0zM512 128a384 384 0 1 0 0 768 384 384 0 0 0 0-768z m21.333333 224a32 32 0 0 0-64 0V554.666667h202.666667a32 32 0 0 0 0-64H533.333333V352z"
+                    fill="#222222" p-id="1980"></path>
+                </svg>
+                <span>2026-01-01 22:00(KST)</span>
+              </div>
+            </div>
+          </div>
+
           <!-- No.6 -->
-          <div class="carbox li3-box" id="KHU-ENVELOP-DESIGN">
-            <h3>[封筒デザイン]慶熙大学封筒デザイン</h3>
+          <div class="carbox li3-box" id="KHU-ENVELOP-DESIGN" data-topics="デザインリソース">
+            <h3>[封筒デザイン] 慶熙大学封筒デザイン</h3>
+            <p class="intro">慶熙大学テーマのPSD/AIベクターテンプレート。塗り足しとトンボ付きで、編集後すぐ量産印刷でき、イベント案内や同窓会発送に便利です。</p>
 
             <a href="https://r2.wuhanqing.cn/KHU-ENVELOP-DESIGN-2025.12.09.zip" target="_blank">
               <p>ダウンロード: KHU-ENVELOP-DESIGN-2025.12.09.zip</p>
             </a>
 
             <a href="https://github.com/WuHanqing2005/KHU-ENVELOP-DESIGN" target="_blank">
-              <p>GitHubオープンソース: https://github.com/WuHanqing2005/KHU-ENVELOP-DESIGN</p>
+              <p>GitHub オープンソース: https://github.com/WuHanqing2005/KHU-ENVELOP-DESIGN</p>
             </a>
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -431,23 +469,21 @@
           </div>
 
           <!-- No.5 -->
-          <div class="carbox li3-box">
-            <h3>[プログラム]空港の音声自動放送システム</h3>
+          <div class="carbox li3-box" data-topics="プログラムツール">
+            <h3>[プログラム] 空港自動アナウンスシステム</h3>
+            <p class="intro">空港向けに設計し、多言語テンプレート、スケジュールキュー、BGM制御を備え、便情報とループリマインダーを柔軟に設定できます。</p>
 
             <a href="https://r2.wuhanqing.cn/Airport-Flight-Announcement-System-2025.11.12.zip" target="_blank">
               <p>ダウンロード: Airport-Flight-Announcement-System-2025.11.12.zip</p>
             </a>
 
             <a href="https://github.com/WuHanqing2005/Airport-Flight-Announcement-System" target="_blank">
-              <p>GitHubオープンソース: https://github.com/WuHanqing2005/Airport-Flight-Announcement-System</p>
+              <p>GitHub オープンソース: https://github.com/WuHanqing2005/Airport-Flight-Announcement-System</p>
             </a>
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -462,23 +498,21 @@
           </div>
 
           <!-- No.4 -->
-          <div class="carbox li3-box">
-            <h3>[プログラム]映画館の自動放送システム</h3>
+          <div class="carbox li3-box" data-topics="プログラムツール">
+            <h3>[プログラム] 映画館自動アナウンスシステム</h3>
+            <p class="intro">スクリーンのスケジュール放送、上映時間リマインダー、緊急挿入に対応し、上映前の注意、マナー案内、終了後の退場放送までカバーします。</p>
 
             <a href="https://r2.wuhanqing.cn/Automatic-Cinema-Announcement-System-2025.03.07.zip" target="_blank">
               <p>ダウンロード: Automatic-Cinema-Announcement-System-2025.03.07.zip</p>
             </a>
 
             <a href="https://github.com/WuHanqing2005/Automatic-Cinema-Announcement-System" target="_blank">
-              <p>GitHub开源: https://github.com/WuHanqing2005/Automatic-Cinema-Announcement-System</p>
+              <p>GitHub オープンソース: https://github.com/WuHanqing2005/Automatic-Cinema-Announcement-System</p>
             </a>
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -493,23 +527,21 @@
           </div>
 
           <!-- No.3 -->
-          <div class="carbox li3-box">
-            <h3>[ウェブサイト]Daniel_清寒のリアルタイム為替監視サイト</h3>
+          <div class="carbox li3-box" data-topics="Webプログラム">
+            <h3>[ウェブ] Daniel_清寒のリアルタイム為替モニター</h3>
+            <p class="intro">主要通貨をリアルタイム取得し、チャートと簡易換算を提供。旅行・貿易・金融学習に役立ちます。</p>
 
             <a href="https://currency.wuhanqing.cn/" target="_blank">
-              <p>ウェブサイトにアクセス: https://currency.wuhanqing.cn/</p>
+              <p>ページを開く: https://currency.wuhanqing.cn/</p>
             </a>
 
             <a href="https://github.com/WuHanqing2005/currency.wuhanqing.cn" target="_blank">
-              <p>GitHubオープンソース: https://github.com/WuHanqing2005/currency.wuhanqing.cn</p>
+              <p>GitHub オープンソース: https://github.com/WuHanqing2005/currency.wuhanqing.cn</p>
             </a>
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -524,23 +556,21 @@
           </div>
 
           <!-- No.2 -->
-          <div class="carbox li3-box">
-            <h3>[ウェブサイト]Daniel_清寒の郵便局サイト</h3>
+          <div class="carbox li3-box" data-topics="Webプログラム">
+            <h3>[ウェブ] Daniel_清寒の郵便ステーション</h3>
+            <p class="intro">郵便番号検索、配送追跡、料金参照などの日常用の簡単な郵便ツールで、発送や郵便手順の理解に便利です。</p>
 
             <a href="https://post.wuhanqing.cn/" target="_blank">
-              <p>ウェブサイトにアクセス: https://post.wuhanqing.cn/</p>
+              <p>ページを開く: https://post.wuhanqing.cn/</p>
             </a>
 
             <a href="https://github.com/WuHanqing2005/post.wuhanqing.cn" target="_blank">
-              <p>GitHubオープンソース: https://github.com/WuHanqing2005/post.wuhanqing.cn</p>
+              <p>GitHub オープンソース: https://github.com/WuHanqing2005/post.wuhanqing.cn</p>
             </a>
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -555,23 +585,21 @@
           </div>
 
           <!-- No.1 -->
-          <div class="carbox li3-box">
-            <h3>[ウェブサイト]Daniel_清寒の航図検索サイト</h3>
+          <div class="carbox li3-box" data-topics="Webプログラム">
+            <h3>[ウェブ] Daniel_清寒の航空チャート検索サイト</h3>
+            <p class="intro">主要航路と空港チャートをまとめ、オンライン閲覧とクイック検索を提供。フライトシム、運航学習、航空ファンに役立ちます。</p>
 
             <a href="https://chart.wuhanqing.cn/" target="_blank">
-              <p>ウェブサイトにアクセス: https://chart.wuhanqing.cn/</p>
+              <p>ページを開く: https://chart.wuhanqing.cn/</p>
             </a>
 
             <a href="https://github.com/WuHanqing2005/chart.wuhanqing.cn" target="_blank">
-              <p>GitHubオープンソース: https://github.com/WuHanqing2005/chart.wuhanqing.cn</p>
+              <p>GitHub オープンソース: https://github.com/WuHanqing2005/chart.wuhanqing.cn</p>
             </a>
 
             <div class="address-wrap">
               <div class="address-left">
-                <!--
-                <span>vue</span>
-                <span>踩坑</span>
-                -->
+                <span class="article-topic"></span>
               </div>
               <div class="address-right">
                 <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -585,34 +613,8 @@
             </div>
           </div>
 
-          <!-- No.3 -->
-          <!--
-          <div class="carbox li3-box">
-            <a>对象响应式属性的添加或删除(！！致使引导地址发生改变才会触发响应)</a>
-            <p>
-              Vue.set(object, key, value) <br>
-              vm.userProfile = Object.assign({}, vm.object, { 在vuex中可以这样修改 <br>
-              key: value,<br>
-              key: value<br>
-              })
-            </p>
-            <div class="address-wrap">
-              <div class="address-left">
-                <span>vue</span>
-                <span>踩坑</span>
-              </div>
-              <div class="address-right">
-                <svg t="1663149212139" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                  xmlns="http://www.w3.org/2000/svg" p-id="1979" width="20" height="20">
-                  <path
-                    d="M192 512a320 320 0 1 1 640 0 320 320 0 0 1-640 0zM512 128a384 384 0 1 0 0 768 384 384 0 0 0 0-768z m21.333333 224a32 32 0 0 0-64 0V554.666667h202.666667a32 32 0 0 0 0-64H533.333333V352z"
-                    fill="#222222" p-id="1980"></path>
-                </svg>
-                <span>2022-07-10 10:43:23</span>
-              </div>
-            </div>
-          </div>
-          -->
+          <!-- 文章结束 -->
+           
         </div>
         <div class="borderbotm"></div>
 

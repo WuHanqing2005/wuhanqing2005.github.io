@@ -630,7 +630,7 @@ function initArticleTopics() {
     const left = box.querySelector('.address-left');
     if (left) {
       const last = left.querySelector('span:last-of-type');
-      if (last) last.textContent = '# ' + topics;
+      if (last) last.textContent = '#' + topics;
     }
   });
 }
