@@ -30,13 +30,18 @@ window.onload = function () {
 //  Helpers
 // ---------------------------------------------------
 window.onresize = function () {
+  // If Paper.js has not been set up yet (or canvas missing), safely return
+  if (!paper.project || !paper.view) return;
+
   project.clear();
   // D = Math.max(paper.view.getSize().width, paper.view.getSize().height);
   // Draw the BG
   var background = new Path.Rectangle(view.bounds);
   // background.fillColor = '#3B3251';
   buildStars();
-  triangle.build(50);
+  if (triangle && typeof triangle.build === 'function') {
+    triangle.build(50);
+  }
 };
 
 var random = function (minimum, maximum) {
