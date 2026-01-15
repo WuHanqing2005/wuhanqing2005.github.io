@@ -14,11 +14,11 @@ echo.
 :: Initialize counters and arrays
 set /a c100=0, c50=0, c20=0, c1=0, total=0
 
-echo [*] SCANNING LOCAL DIRECTORY...
+echo [*] SCANNING LOCAL DIRECTORY AND ALL SUBDIRECTORIES...
 echo --------------------------------------------------------------------------
 
-:: Core scanning logic
-for %%F in (*) do (
+:: Core scanning logic - RECURSIVELY scan all files
+for /r %%F in (*) do (
     if /i not "%%~nxF"=="%~nx0" (
         set "size=%%~zF"
         set /a sizeMB=!size! / 1048576
