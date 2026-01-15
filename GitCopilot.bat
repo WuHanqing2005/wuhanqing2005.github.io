@@ -14,34 +14,48 @@ echo.
 :: Initialize counters and arrays
 set /a c100=0, c50=0, c20=0, c1=0, total=0
 
+:: Get the current directory for calculating relative paths
+set "rootdir=%~dp0"
+set "rootdir=%rootdir:~0,-1%"
+
 echo [*] SCANNING LOCAL DIRECTORY AND ALL SUBDIRECTORIES...
+echo [*] ROOT: %rootdir%
 echo --------------------------------------------------------------------------
 
 :: Core scanning logic - RECURSIVELY scan all files
 for /r %%F in (*) do (
     if /i not "%%~nxF"=="%~nx0" (
-        set "size=%%~zF"
-        set /a sizeMB=!size! / 1048576
+        set "fullpath=%%F"
         
-        if !sizeMB! GEQ 100 (
-            set "file100[!c100!]=!sizeMB! MB -- %%~nxF"
-            set /a c100+=1
-            set /a total+=1
-        )
-        if !sizeMB! GEQ 50 if !sizeMB! LSS 100 (
-            set "file50[!c50!]=!sizeMB! MB -- %%~nxF"
-            set /a c50+=1
-            set /a total+=1
-        )
-        if !sizeMB! GEQ 20 if !sizeMB! LSS 50 (
-            set "file20[!c20!]=!sizeMB! MB -- %%~nxF"
-            set /a c20+=1
-            set /a total+=1
-        )
-        if !sizeMB! GEQ 1 if !sizeMB! LSS 20 (
-            set "file1[!c1!]=!sizeMB! MB -- %%~nxF"
-            set /a c1+=1
-            set /a total+=1
+        :: Skip .git, node_modules, and other ignored directories
+        echo "!fullpath!" | findstr /i /c:"\.git\\" /c:"\node_modules\\" /c:"\.vscode\\" >nul
+        if errorlevel 1 (
+            set "size=%%~zF"
+            set /a sizeMB=!size! / 1048576
+            
+            :: Calculate relative path
+            set "relpath=!fullpath:%rootdir%\=!"
+            
+            if !sizeMB! GEQ 100 (
+                set "file100[!c100!]=!sizeMB! MB -- !relpath!"
+                set /a c100+=1
+                set /a total+=1
+            )
+            if !sizeMB! GEQ 50 if !sizeMB! LSS 100 (
+                set "file50[!c50!]=!sizeMB! MB -- !relpath!"
+                set /a c50+=1
+                set /a total+=1
+            )
+            if !sizeMB! GEQ 20 if !sizeMB! LSS 50 (
+                set "file20[!c20!]=!sizeMB! MB -- !relpath!"
+                set /a c20+=1
+                set /a total+=1
+            )
+            if !sizeMB! GEQ 1 if !sizeMB! LSS 20 (
+                set "file1[!c1!]=!sizeMB! MB -- !relpath!"
+                set /a c1+=1
+                set /a total+=1
+            )
         )
     )
 )
