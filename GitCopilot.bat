@@ -27,8 +27,8 @@ for /r %%F in (*) do (
     if /i not "%%~nxF"=="%~nx0" (
         set "fullpath=%%F"
         
-        :: Skip .git, node_modules, and other ignored directories
-        echo "!fullpath!" | findstr /i /c:"\.git\\" /c:"\node_modules\\" /c:"\.vscode\\" >nul
+        :: Skip .git directory only
+        echo "!fullpath!" | findstr /i /c:"\.git\\" >nul
         if errorlevel 1 (
             set "size=%%~zF"
             set /a sizeMB=!size! / 1048576
